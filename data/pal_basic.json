@@ -1,0 +1,808 @@
+[
+  {
+    "id": "No.",
+    "name": "Pal",
+    "types": [
+      "Element"
+    ]
+  },
+  {
+    "id": "001",
+    "name": "Lamball",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "002",
+    "name": "Cattiva",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "003",
+    "name": "Chikipi",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "004",
+    "name": "Lifmunk",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "005",
+    "name": "Foxparks",
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "006",
+    "name": "Fuack",
+    "types": [
+      "Water"
+    ]
+  },
+  {
+    "id": "007",
+    "name": "Sparkit",
+    "types": [
+      "Electric"
+    ]
+  },
+  {
+    "id": "008",
+    "name": "Tanzee",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "009",
+    "name": "Rooby",
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "010",
+    "name": "Pengullet",
+    "types": [
+      "Water",
+      "Ice"
+    ]
+  },
+  {
+    "id": "011",
+    "name": "Penking",
+    "types": [
+      "Water",
+      "Ice"
+    ]
+  },
+  {
+    "id": "012",
+    "name": "Jolthog",
+    "types": [
+      "Electric"
+    ]
+  },
+  {
+    "id": "013",
+    "name": "Gumoss",
+    "types": [
+      "Grass",
+      "Ground"
+    ]
+  },
+  {
+    "id": "014",
+    "name": "Vixy",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "015",
+    "name": "Hoocrates",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "016",
+    "name": "Teafant",
+    "types": [
+      "Water"
+    ]
+  },
+  {
+    "id": "017",
+    "name": "Depresso",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "018",
+    "name": "Cremis",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "019",
+    "name": "Daedream",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "020",
+    "name": "Rushoar",
+    "types": [
+      "Ground"
+    ]
+  },
+  {
+    "id": "021",
+    "name": "Nox",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "022",
+    "name": "Fuddler",
+    "types": [
+      "Ground"
+    ]
+  },
+  {
+    "id": "023",
+    "name": "Killamari",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "024",
+    "name": "Mau",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "025",
+    "name": "Celaray",
+    "types": [
+      "Water"
+    ]
+  },
+  {
+    "id": "026",
+    "name": "Direhowl",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "027",
+    "name": "Tocotoco",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "028",
+    "name": "Flopie",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "029",
+    "name": "Mozzarina",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "030",
+    "name": "Bristla",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "031",
+    "name": "Gobfin",
+    "types": [
+      "Water"
+    ]
+  },
+  {
+    "id": "032",
+    "name": "Hangyu",
+    "types": [
+      "Ground"
+    ]
+  },
+  {
+    "id": "033",
+    "name": "Mossanda",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "034",
+    "name": "Woolipop",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "035",
+    "name": "Caprity",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "036",
+    "name": "Melpaca",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "037",
+    "name": "Eikthyrdeer",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "038",
+    "name": "Nitewing",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "039",
+    "name": "Ribbuny",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "040",
+    "name": "Incineram",
+    "types": [
+      "Fire",
+      "Dark"
+    ]
+  },
+  {
+    "id": "041",
+    "name": "Cinnamoth",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "042",
+    "name": "Arsox",
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "043",
+    "name": "Dumud",
+    "types": [
+      "Ground"
+    ]
+  },
+  {
+    "id": "044",
+    "name": "Cawgnito",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "045",
+    "name": "Leezpunk",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "046",
+    "name": "Loupmoon",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "047",
+    "name": "Galeclaw",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "048",
+    "name": "Robinquill",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "049",
+    "name": "Gorirat",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "050",
+    "name": "Beegarde",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "051",
+    "name": "Elizabee",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "052",
+    "name": "Grintale",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "053",
+    "name": "Swee",
+    "types": [
+      "Ice"
+    ]
+  },
+  {
+    "id": "054",
+    "name": "Sweepa",
+    "types": [
+      "Ice"
+    ]
+  },
+  {
+    "id": "055",
+    "name": "Chillet",
+    "types": [
+      "Ice",
+      "Dragon"
+    ]
+  },
+  {
+    "id": "056",
+    "name": "Univolt",
+    "types": [
+      "Electric"
+    ]
+  },
+  {
+    "id": "057",
+    "name": "Foxcicle",
+    "types": [
+      "Ice"
+    ]
+  },
+  {
+    "id": "058",
+    "name": "Pyrin",
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "059",
+    "name": "Reindrix",
+    "types": [
+      "Ice"
+    ]
+  },
+  {
+    "id": "060",
+    "name": "Rayhound",
+    "types": [
+      "Electric"
+    ]
+  },
+  {
+    "id": "061",
+    "name": "Kitsun",
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "062",
+    "name": "Dazzi",
+    "types": [
+      "Electric"
+    ]
+  },
+  {
+    "id": "063",
+    "name": "Lunaris",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "064",
+    "name": "Dinossom",
+    "types": [
+      "Grass",
+      "Dragon"
+    ]
+  },
+  {
+    "id": "065",
+    "name": "Surfent",
+    "types": [
+      "Water"
+    ]
+  },
+  {
+    "id": "066",
+    "name": "Maraith",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "067",
+    "name": "Digtoise",
+    "types": [
+      "Ground"
+    ]
+  },
+  {
+    "id": "068",
+    "name": "Tombat",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "069",
+    "name": "Lovander",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "070",
+    "name": "Flambelle",
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "071",
+    "name": "Vanwyrm",
+    "types": [
+      "Fire",
+      "Dark"
+    ]
+  },
+  {
+    "id": "072",
+    "name": "Bushi",
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "073",
+    "name": "Beakon",
+    "types": [
+      "Electric"
+    ]
+  },
+  {
+    "id": "074",
+    "name": "Ragnahawk",
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "075",
+    "name": "Katress",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "076",
+    "name": "Wixen",
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "077",
+    "name": "Verdash",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "078",
+    "name": "Vaelet",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "079",
+    "name": "Sibelyx",
+    "types": [
+      "Ice"
+    ]
+  },
+  {
+    "id": "080",
+    "name": "Elphidran",
+    "types": [
+      "Dragon"
+    ]
+  },
+  {
+    "id": "081",
+    "name": "Kelpsea",
+    "types": [
+      "Water"
+    ]
+  },
+  {
+    "id": "082",
+    "name": "Azurobe",
+    "types": [
+      "Water",
+      "Dragon"
+    ]
+  },
+  {
+    "id": "083",
+    "name": "Cryolinx",
+    "types": [
+      "Ice"
+    ]
+  },
+  {
+    "id": "084",
+    "name": "Blazehowl",
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "085",
+    "name": "Relaxaurus",
+    "types": [
+      "Dragon",
+      "Water"
+    ]
+  },
+  {
+    "id": "086",
+    "name": "Broncherry",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "087",
+    "name": "Petallia",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "088",
+    "name": "Reptyro",
+    "types": [
+      "Fire",
+      "Ground"
+    ]
+  },
+  {
+    "id": "089",
+    "name": "Kingpaca",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "090",
+    "name": "Mammorest",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "091",
+    "name": "Wumpo",
+    "types": [
+      "Ice"
+    ]
+  },
+  {
+    "id": "092",
+    "name": "Warsect",
+    "types": [
+      "Grass",
+      "Ground"
+    ]
+  },
+  {
+    "id": "093",
+    "name": "Fenglope",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "094",
+    "name": "Felbat",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "095",
+    "name": "Quivern",
+    "types": [
+      "Dragon"
+    ]
+  },
+  {
+    "id": "096",
+    "name": "Blazamut",
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "097",
+    "name": "Helzephyr",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "098",
+    "name": "Astegon",
+    "types": [
+      "Dragon",
+      "Dark"
+    ]
+  },
+  {
+    "id": "099",
+    "name": "Menasting",
+    "types": [
+      "Dark",
+      "Ground"
+    ]
+  },
+  {
+    "id": "100",
+    "name": "Anubis",
+    "types": [
+      "Ground"
+    ]
+  },
+  {
+    "id": "101",
+    "name": "Jormuntide",
+    "types": [
+      "Dragon",
+      "Water"
+    ]
+  },
+  {
+    "id": "102",
+    "name": "Suzaku",
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "103",
+    "name": "Grizzbolt",
+    "types": [
+      "Electric"
+    ]
+  },
+  {
+    "id": "104",
+    "name": "Lyleen",
+    "types": [
+      "Grass"
+    ]
+  },
+  {
+    "id": "105",
+    "name": "Faleris",
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "106",
+    "name": "Orserk",
+    "types": [
+      "Dragon",
+      "Electric"
+    ]
+  },
+  {
+    "id": "107",
+    "name": "Shadowbeak",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "108",
+    "name": "Paladius",
+    "types": [
+      "Neutral"
+    ]
+  },
+  {
+    "id": "109",
+    "name": "Necromus",
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "110",
+    "name": "Frostallion",
+    "types": [
+      "Ice"
+    ]
+  },
+  {
+    "id": "111",
+    "name": "Jetragon",
+    "types": [
+      "Dragon"
+    ]
+  },
+  {
+    "id": "112",
+    "name": "Bellanoir",
+    "types": [
+      "Dark"
+    ]
+  }
+]
