@@ -4,21 +4,23 @@ import (
 	"flag"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestLoadPalBases(t *testing.T) {
+	require := require.New(t)
 	updateDataDirFlag()
 	defer resetDataDirFlag()
 	err := LoadPalBases()
-	if assert.NoError(t, err) {
-		assert.NotEmpty(t, len(_palBases))
-		for item := range _palBases.All() {
-			assert.NotEmpty(t, item.Name)
-			assert.NotEmpty(t, item.Id)
-			assert.NotEmpty(t, item.Types)
-			assert.NotEmpty(t, len(item.Types))
-		}
+	require.NoError(err)
+	require.NotEmpty(len(_palBases))
+	for item := range _palBases.All() {
+		require.NotEmpty(item.Id, item)
+		require.NotEmpty(item.Name)
+		require.Positive(item.BaseHp, item)
+		require.Positive(item.BaseAttack)
+		require.Positive(item.BaseDefence)
+		require.NotEmpty(item.Types)
 	}
 }
 

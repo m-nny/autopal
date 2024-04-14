@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 
 	"minmax.uk/autopal/pkg/pal"
@@ -13,6 +14,6 @@ func main() {
 		log.Fatalf("could not load PalBases: %v", err)
 	}
 	for item := range pal.AllPalBases() {
-		log.Printf("item: %+v", item)
+		fmt.Printf("%s\n\t%+v\n", item.String(), item)
 	}
 }

@@ -3,6 +3,7 @@ package pal
 import (
 	"encoding/json"
 	"flag"
+	"fmt"
 	"iter"
 	"os"
 	"path/filepath"
@@ -11,10 +12,20 @@ import (
 var dataDir = flag.String("data_dir", "./data", "path to data dir")
 
 type PalBaseId string
+
+var _ fmt.Stringer = (*PalBase)(nil)
+
 type PalBase struct {
-	Id    PalBaseId
-	Name  string
-	Types []Type
+	Id          PalBaseId
+	Name        string
+	BaseHp      int `json:"base_hp"`
+	BaseAttack  int `json:"base_attack"`
+	BaseDefence int `json:"base_defence"`
+	Types       []Type
+}
+
+func (pb *PalBase) String() string {
+	return fmt.Sprintf("%s (%s)", pb.Name, pb.Id)
 }
 
 type PalBases []PalBase

@@ -1,705 +1,1002 @@
 [
   {
-    "id": "001",
+    "id": "1",
     "name": "Lamball",
+    "base_hp": 70,
+    "base_attack": 70,
+    "base_defence": 70,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "002",
+    "id": "2",
     "name": "Cattiva",
+    "base_hp": 70,
+    "base_attack": 70,
+    "base_defence": 70,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "003",
+    "id": "3",
     "name": "Chikipi",
+    "base_hp": 60,
+    "base_attack": 60,
+    "base_defence": 60,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "004",
+    "id": "4",
     "name": "Lifmunk",
+    "base_hp": 75,
+    "base_attack": 70,
+    "base_defence": 70,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "005",
+    "id": "5",
     "name": "Foxparks",
+    "base_hp": 65,
+    "base_attack": 75,
+    "base_defence": 70,
     "types": [
       "Fire"
     ]
   },
   {
-    "id": "006",
+    "id": "6",
     "name": "Fuack",
+    "base_hp": 60,
+    "base_attack": 80,
+    "base_defence": 60,
     "types": [
       "Water"
     ]
   },
   {
-    "id": "007",
+    "id": "7",
     "name": "Sparkit",
+    "base_hp": 60,
+    "base_attack": 75,
+    "base_defence": 70,
     "types": [
       "Electric"
     ]
   },
   {
-    "id": "008",
+    "id": "8",
     "name": "Tanzee",
+    "base_hp": 80,
+    "base_attack": 70,
+    "base_defence": 70,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "009",
+    "id": "9",
     "name": "Rooby",
+    "base_hp": 75,
+    "base_attack": 70,
+    "base_defence": 75,
     "types": [
       "Fire"
     ]
   },
   {
-    "id": "010",
+    "id": "10",
     "name": "Pengullet",
+    "base_hp": 70,
+    "base_attack": 75,
+    "base_defence": 70,
     "types": [
       "Water",
       "Ice"
     ]
   },
   {
-    "id": "011",
+    "id": "11",
     "name": "Penking",
+    "base_hp": 95,
+    "base_attack": 95,
+    "base_defence": 95,
     "types": [
       "Water",
       "Ice"
     ]
   },
   {
-    "id": "012",
+    "id": "12",
     "name": "Jolthog",
+    "base_hp": 70,
+    "base_attack": 75,
+    "base_defence": 70,
     "types": [
       "Electric"
     ]
   },
   {
-    "id": "013",
+    "id": "13",
     "name": "Gumoss",
+    "base_hp": 70,
+    "base_attack": 70,
+    "base_defence": 70,
     "types": [
       "Grass",
       "Ground"
     ]
   },
   {
-    "id": "014",
+    "id": "14",
     "name": "Vixy",
+    "base_hp": 70,
+    "base_attack": 70,
+    "base_defence": 70,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "015",
+    "id": "15",
     "name": "Hoocrates",
+    "base_hp": 70,
+    "base_attack": 70,
+    "base_defence": 80,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "016",
+    "id": "16",
     "name": "Teafant",
+    "base_hp": 70,
+    "base_attack": 60,
+    "base_defence": 70,
     "types": [
       "Water"
     ]
   },
   {
-    "id": "017",
+    "id": "17",
     "name": "Depresso",
+    "base_hp": 70,
+    "base_attack": 70,
+    "base_defence": 70,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "018",
+    "id": "18",
     "name": "Cremis",
+    "base_hp": 70,
+    "base_attack": 70,
+    "base_defence": 75,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "019",
+    "id": "19",
     "name": "Daedream",
+    "base_hp": 70,
+    "base_attack": 75,
+    "base_defence": 60,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "020",
+    "id": "20",
     "name": "Rushoar",
+    "base_hp": 80,
+    "base_attack": 70,
+    "base_defence": 70,
     "types": [
       "Ground"
     ]
   },
   {
-    "id": "021",
+    "id": "21",
     "name": "Nox",
+    "base_hp": 75,
+    "base_attack": 85,
+    "base_defence": 70,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "022",
+    "id": "22",
     "name": "Fuddler",
+    "base_hp": 65,
+    "base_attack": 80,
+    "base_defence": 50,
     "types": [
       "Ground"
     ]
   },
   {
-    "id": "023",
+    "id": "23",
     "name": "Killamari",
+    "base_hp": 60,
+    "base_attack": 60,
+    "base_defence": 70,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "024",
+    "id": "24",
     "name": "Mau",
+    "base_hp": 70,
+    "base_attack": 60,
+    "base_defence": 70,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "025",
+    "id": "25",
     "name": "Celaray",
+    "base_hp": 80,
+    "base_attack": 70,
+    "base_defence": 80,
     "types": [
       "Water"
     ]
   },
   {
-    "id": "026",
+    "id": "26",
     "name": "Direhowl",
+    "base_hp": 80,
+    "base_attack": 90,
+    "base_defence": 75,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "027",
+    "id": "27",
     "name": "Tocotoco",
+    "base_hp": 60,
+    "base_attack": 75,
+    "base_defence": 70,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "028",
+    "id": "28",
     "name": "Flopie",
+    "base_hp": 75,
+    "base_attack": 65,
+    "base_defence": 70,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "029",
+    "id": "29",
     "name": "Mozzarina",
+    "base_hp": 90,
+    "base_attack": 50,
+    "base_defence": 80,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "030",
+    "id": "30",
     "name": "Bristla",
+    "base_hp": 80,
+    "base_attack": 80,
+    "base_defence": 80,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "031",
+    "id": "31",
     "name": "Gobfin",
+    "base_hp": 90,
+    "base_attack": 90,
+    "base_defence": 75,
     "types": [
       "Water"
     ]
   },
   {
-    "id": "032",
+    "id": "32",
     "name": "Hangyu",
+    "base_hp": 80,
+    "base_attack": 70,
+    "base_defence": 70,
     "types": [
       "Ground"
     ]
   },
   {
-    "id": "033",
+    "id": "33",
     "name": "Mossanda",
+    "base_hp": 100,
+    "base_attack": 90,
+    "base_defence": 90,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "034",
+    "id": "34",
     "name": "Woolipop",
+    "base_hp": 70,
+    "base_attack": 70,
+    "base_defence": 90,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "035",
+    "id": "35",
     "name": "Caprity",
+    "base_hp": 100,
+    "base_attack": 70,
+    "base_defence": 90,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "036",
+    "id": "36",
     "name": "Melpaca",
+    "base_hp": 90,
+    "base_attack": 75,
+    "base_defence": 90,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "037",
+    "id": "37",
     "name": "Eikthyrdeer",
+    "base_hp": 95,
+    "base_attack": 80,
+    "base_defence": 80,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "038",
+    "id": "38",
     "name": "Nitewing",
+    "base_hp": 100,
+    "base_attack": 95,
+    "base_defence": 80,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "039",
+    "id": "39",
     "name": "Ribbuny",
+    "base_hp": 75,
+    "base_attack": 65,
+    "base_defence": 70,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "040",
+    "id": "40",
     "name": "Incineram",
+    "base_hp": 95,
+    "base_attack": 100,
+    "base_defence": 85,
     "types": [
       "Fire",
       "Dark"
     ]
   },
   {
-    "id": "041",
+    "id": "41",
     "name": "Cinnamoth",
+    "base_hp": 70,
+    "base_attack": 80,
+    "base_defence": 80,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "042",
+    "id": "42",
     "name": "Arsox",
+    "base_hp": 85,
+    "base_attack": 95,
+    "base_defence": 95,
     "types": [
       "Fire"
     ]
   },
   {
-    "id": "043",
+    "id": "43",
     "name": "Dumud",
+    "base_hp": 100,
+    "base_attack": 70,
+    "base_defence": 95,
     "types": [
       "Ground"
     ]
   },
   {
-    "id": "044",
+    "id": "44",
     "name": "Cawgnito",
+    "base_hp": 75,
+    "base_attack": 95,
+    "base_defence": 80,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "045",
+    "id": "45",
     "name": "Leezpunk",
+    "base_hp": 80,
+    "base_attack": 80,
+    "base_defence": 50,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "046",
+    "id": "46",
     "name": "Loupmoon",
+    "base_hp": 80,
+    "base_attack": 100,
+    "base_defence": 80,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "047",
+    "id": "47",
     "name": "Galeclaw",
+    "base_hp": 75,
+    "base_attack": 85,
+    "base_defence": 60,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "048",
+    "id": "48",
     "name": "Robinquill",
+    "base_hp": 90,
+    "base_attack": 105,
+    "base_defence": 80,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "049",
+    "id": "49",
     "name": "Gorirat",
+    "base_hp": 90,
+    "base_attack": 95,
+    "base_defence": 90,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "050",
+    "id": "50",
     "name": "Beegarde",
+    "base_hp": 80,
+    "base_attack": 90,
+    "base_defence": 90,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "051",
+    "id": "51",
     "name": "Elizabee",
+    "base_hp": 90,
+    "base_attack": 105,
+    "base_defence": 100,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "052",
+    "id": "52",
     "name": "Grintale",
+    "base_hp": 110,
+    "base_attack": 80,
+    "base_defence": 80,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "053",
+    "id": "53",
     "name": "Swee",
+    "base_hp": 60,
+    "base_attack": 60,
+    "base_defence": 60,
     "types": [
       "Ice"
     ]
   },
   {
-    "id": "054",
+    "id": "54",
     "name": "Sweepa",
+    "base_hp": 100,
+    "base_attack": 90,
+    "base_defence": 90,
     "types": [
       "Ice"
     ]
   },
   {
-    "id": "055",
+    "id": "55",
     "name": "Chillet",
+    "base_hp": 90,
+    "base_attack": 80,
+    "base_defence": 80,
     "types": [
       "Ice",
       "Dragon"
     ]
   },
   {
-    "id": "056",
+    "id": "56",
     "name": "Univolt",
+    "base_hp": 80,
+    "base_attack": 105,
+    "base_defence": 105,
     "types": [
       "Electric"
     ]
   },
   {
-    "id": "057",
+    "id": "57",
     "name": "Foxcicle",
+    "base_hp": 90,
+    "base_attack": 95,
+    "base_defence": 105,
     "types": [
       "Ice"
     ]
   },
   {
-    "id": "058",
+    "id": "58",
     "name": "Pyrin",
+    "base_hp": 100,
+    "base_attack": 95,
+    "base_defence": 90,
     "types": [
       "Fire"
     ]
   },
   {
-    "id": "059",
+    "id": "59",
     "name": "Reindrix",
+    "base_hp": 100,
+    "base_attack": 85,
+    "base_defence": 110,
     "types": [
       "Ice"
     ]
   },
   {
-    "id": "060",
+    "id": "60",
     "name": "Rayhound",
+    "base_hp": 90,
+    "base_attack": 100,
+    "base_defence": 80,
     "types": [
       "Electric"
     ]
   },
   {
-    "id": "061",
+    "id": "61",
     "name": "Kitsun",
+    "base_hp": 100,
+    "base_attack": 115,
+    "base_defence": 100,
     "types": [
       "Fire"
     ]
   },
   {
-    "id": "062",
+    "id": "62",
     "name": "Dazzi",
+    "base_hp": 70,
+    "base_attack": 80,
+    "base_defence": 70,
     "types": [
       "Electric"
     ]
   },
   {
-    "id": "063",
+    "id": "63",
     "name": "Lunaris",
+    "base_hp": 90,
+    "base_attack": 100,
+    "base_defence": 90,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "064",
+    "id": "64",
     "name": "Dinossom",
+    "base_hp": 110,
+    "base_attack": 85,
+    "base_defence": 90,
     "types": [
       "Grass",
       "Dragon"
     ]
   },
   {
-    "id": "065",
+    "id": "65",
     "name": "Surfent",
+    "base_hp": 90,
+    "base_attack": 90,
+    "base_defence": 80,
     "types": [
       "Water"
     ]
   },
   {
-    "id": "066",
+    "id": "66",
     "name": "Maraith",
+    "base_hp": 75,
+    "base_attack": 105,
+    "base_defence": 80,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "067",
+    "id": "67",
     "name": "Digtoise",
+    "base_hp": 80,
+    "base_attack": 95,
+    "base_defence": 120,
     "types": [
       "Ground"
     ]
   },
   {
-    "id": "068",
+    "id": "68",
     "name": "Tombat",
+    "base_hp": 95,
+    "base_attack": 95,
+    "base_defence": 80,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "069",
+    "id": "69",
     "name": "Lovander",
+    "base_hp": 120,
+    "base_attack": 70,
+    "base_defence": 70,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "070",
+    "id": "70",
     "name": "Flambelle",
+    "base_hp": 60,
+    "base_attack": 70,
+    "base_defence": 80,
     "types": [
       "Fire"
     ]
   },
   {
-    "id": "071",
+    "id": "71",
     "name": "Vanwyrm",
+    "base_hp": 90,
+    "base_attack": 115,
+    "base_defence": 90,
     "types": [
       "Fire",
       "Dark"
     ]
   },
   {
-    "id": "072",
+    "id": "72",
     "name": "Bushi",
+    "base_hp": 80,
+    "base_attack": 125,
+    "base_defence": 80,
     "types": [
       "Fire"
     ]
   },
   {
-    "id": "073",
+    "id": "73",
     "name": "Beakon",
+    "base_hp": 105,
+    "base_attack": 115,
+    "base_defence": 80,
     "types": [
       "Electric"
     ]
   },
   {
-    "id": "074",
+    "id": "74",
     "name": "Ragnahawk",
+    "base_hp": 95,
+    "base_attack": 105,
+    "base_defence": 120,
     "types": [
       "Fire"
     ]
   },
   {
-    "id": "075",
+    "id": "75",
     "name": "Katress",
+    "base_hp": 90,
+    "base_attack": 105,
+    "base_defence": 90,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "076",
+    "id": "76",
     "name": "Wixen",
+    "base_hp": 90,
+    "base_attack": 110,
+    "base_defence": 80,
     "types": [
       "Fire"
     ]
   },
   {
-    "id": "077",
+    "id": "77",
     "name": "Verdash",
+    "base_hp": 90,
+    "base_attack": 115,
+    "base_defence": 90,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "078",
+    "id": "78",
     "name": "Vaelet",
+    "base_hp": 100,
+    "base_attack": 100,
+    "base_defence": 120,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "079",
+    "id": "79",
     "name": "Sibelyx",
+    "base_hp": 110,
+    "base_attack": 90,
+    "base_defence": 100,
     "types": [
       "Ice"
     ]
   },
   {
-    "id": "080",
+    "id": "80",
     "name": "Elphidran",
+    "base_hp": 110,
+    "base_attack": 80,
+    "base_defence": 90,
     "types": [
       "Dragon"
     ]
   },
   {
-    "id": "081",
+    "id": "81",
     "name": "Kelpsea",
+    "base_hp": 70,
+    "base_attack": 70,
+    "base_defence": 70,
     "types": [
       "Water"
     ]
   },
   {
-    "id": "082",
+    "id": "82",
     "name": "Azurobe",
+    "base_hp": 110,
+    "base_attack": 100,
+    "base_defence": 100,
     "types": [
       "Water",
       "Dragon"
     ]
   },
   {
-    "id": "083",
+    "id": "83",
     "name": "Cryolinx",
+    "base_hp": 100,
+    "base_attack": 100,
+    "base_defence": 110,
     "types": [
       "Ice"
     ]
   },
   {
-    "id": "084",
+    "id": "84",
     "name": "Blazehowl",
+    "base_hp": 105,
+    "base_attack": 110,
+    "base_defence": 80,
     "types": [
       "Fire"
     ]
   },
   {
-    "id": "085",
+    "id": "85",
     "name": "Relaxaurus",
+    "base_hp": 110,
+    "base_attack": 100,
+    "base_defence": 70,
     "types": [
       "Dragon",
       "Water"
     ]
   },
   {
-    "id": "086",
+    "id": "86",
     "name": "Broncherry",
+    "base_hp": 120,
+    "base_attack": 90,
+    "base_defence": 100,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "087",
+    "id": "87",
     "name": "Petallia",
+    "base_hp": 100,
+    "base_attack": 95,
+    "base_defence": 100,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "088",
+    "id": "88",
     "name": "Reptyro",
+    "base_hp": 110,
+    "base_attack": 105,
+    "base_defence": 120,
     "types": [
       "Fire",
       "Ground"
     ]
   },
   {
-    "id": "089",
+    "id": "89",
     "name": "Kingpaca",
+    "base_hp": 120,
+    "base_attack": 85,
+    "base_defence": 90,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "090",
+    "id": "90",
     "name": "Mammorest",
+    "base_hp": 150,
+    "base_attack": 85,
+    "base_defence": 90,
     "types": [
       "Grass"
     ]
   },
   {
-    "id": "091",
+    "id": "91",
     "name": "Wumpo",
+    "base_hp": 140,
+    "base_attack": 80,
+    "base_defence": 100,
     "types": [
       "Ice"
     ]
   },
   {
-    "id": "092",
+    "id": "92",
     "name": "Warsect",
+    "base_hp": 120,
+    "base_attack": 100,
+    "base_defence": 120,
     "types": [
       "Grass",
       "Ground"
     ]
   },
   {
-    "id": "093",
+    "id": "93",
     "name": "Fenglope",
+    "base_hp": 110,
+    "base_attack": 110,
+    "base_defence": 90,
     "types": [
       "Neutral"
     ]
   },
   {
-    "id": "094",
+    "id": "94",
     "name": "Felbat",
+    "base_hp": 100,
+    "base_attack": 105,
+    "base_defence": 110,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "095",
+    "id": "95",
     "name": "Quivern",
+    "base_hp": 105,
+    "base_attack": 100,
+    "base_defence": 100,
     "types": [
       "Dragon"
     ]
   },
   {
-    "id": "096",
+    "id": "96",
     "name": "Blazamut",
+    "base_hp": 100,
+    "base_attack": 125,
+    "base_defence": 120,
     "types": [
       "Fire"
     ]
   },
   {
-    "id": "097",
+    "id": "97",
     "name": "Helzephyr",
+    "base_hp": 100,
+    "base_attack": 125,
+    "base_defence": 100,
     "types": [
       "Dark"
     ]
   },
   {
-    "id": "098",
+    "id": "98",
     "name": "Astegon",
+    "base_hp": 100,
+    "base_attack": 125,
+    "base_defence": 125,
     "types": [
       "Dragon",
       "Dark"
     ]
   },
   {
-    "id": "099",
+    "id": "99",
     "name": "Menasting",
+    "base_hp": 100,
+    "base_attack": 100,
+    "base_defence": 130,
     "types": [
       "Dark",
       "Ground"
@@ -708,6 +1005,9 @@
   {
     "id": "100",
     "name": "Anubis",
+    "base_hp": 120,
+    "base_attack": 130,
+    "base_defence": 100,
     "types": [
       "Ground"
     ]
@@ -715,6 +1015,9 @@
   {
     "id": "101",
     "name": "Jormuntide",
+    "base_hp": 130,
+    "base_attack": 120,
+    "base_defence": 100,
     "types": [
       "Dragon",
       "Water"
@@ -723,6 +1026,9 @@
   {
     "id": "102",
     "name": "Suzaku",
+    "base_hp": 120,
+    "base_attack": 105,
+    "base_defence": 105,
     "types": [
       "Fire"
     ]
@@ -730,6 +1036,9 @@
   {
     "id": "103",
     "name": "Grizzbolt",
+    "base_hp": 105,
+    "base_attack": 100,
+    "base_defence": 100,
     "types": [
       "Electric"
     ]
@@ -737,6 +1046,9 @@
   {
     "id": "104",
     "name": "Lyleen",
+    "base_hp": 110,
+    "base_attack": 110,
+    "base_defence": 105,
     "types": [
       "Grass"
     ]
@@ -744,6 +1056,9 @@
   {
     "id": "105",
     "name": "Faleris",
+    "base_hp": 100,
+    "base_attack": 105,
+    "base_defence": 110,
     "types": [
       "Fire"
     ]
@@ -751,6 +1066,9 @@
   {
     "id": "106",
     "name": "Orserk",
+    "base_hp": 100,
+    "base_attack": 130,
+    "base_defence": 100,
     "types": [
       "Dragon",
       "Electric"
@@ -759,6 +1077,9 @@
   {
     "id": "107",
     "name": "Shadowbeak",
+    "base_hp": 120,
+    "base_attack": 120,
+    "base_defence": 140,
     "types": [
       "Dark"
     ]
@@ -766,6 +1087,9 @@
   {
     "id": "108",
     "name": "Paladius",
+    "base_hp": 130,
+    "base_attack": 120,
+    "base_defence": 145,
     "types": [
       "Neutral"
     ]
@@ -773,6 +1097,9 @@
   {
     "id": "109",
     "name": "Necromus",
+    "base_hp": 130,
+    "base_attack": 145,
+    "base_defence": 120,
     "types": [
       "Dark"
     ]
@@ -780,6 +1107,9 @@
   {
     "id": "110",
     "name": "Frostallion",
+    "base_hp": 140,
+    "base_attack": 140,
+    "base_defence": 120,
     "types": [
       "Ice"
     ]
@@ -787,6 +1117,9 @@
   {
     "id": "111",
     "name": "Jetragon",
+    "base_hp": 110,
+    "base_attack": 140,
+    "base_defence": 110,
     "types": [
       "Dragon"
     ]
@@ -794,8 +1127,302 @@
   {
     "id": "112",
     "name": "Bellanoir",
+    "base_hp": 10,
+    "base_attack": 10,
+    "base_defence": 10,
     "types": [
       "Dark"
+    ]
+  },
+  {
+    "id": "101B",
+    "name": "Jormuntide Ignis",
+    "base_hp": 130,
+    "base_attack": 130,
+    "base_defence": 100,
+    "types": [
+      "Dragon",
+      "Fire"
+    ]
+  },
+  {
+    "id": "102B",
+    "name": "Suzaku Aqua",
+    "base_hp": 125,
+    "base_attack": 105,
+    "base_defence": 105,
+    "types": [
+      "Water"
+    ]
+  },
+  {
+    "id": "104B",
+    "name": "Lyleen Noct",
+    "base_hp": 110,
+    "base_attack": 110,
+    "base_defence": 115,
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "110B",
+    "name": "Frostallion Noct",
+    "base_hp": 140,
+    "base_attack": 140,
+    "base_defence": 135,
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "112B",
+    "name": "Bellanoir Libero",
+    "base_hp": 10,
+    "base_attack": 10,
+    "base_defence": 10,
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "12B",
+    "name": "Jolthog Cryst",
+    "base_hp": 70,
+    "base_attack": 75,
+    "base_defence": 80,
+    "types": [
+      "Ice"
+    ]
+  },
+  {
+    "id": "13B",
+    "name": "Special Flower Gumoss",
+    "base_hp": 70,
+    "base_attack": 70,
+    "base_defence": 70,
+    "types": [
+      "Grass",
+      "Ground"
+    ]
+  },
+  {
+    "id": "24B",
+    "name": "Mau Cryst",
+    "base_hp": 70,
+    "base_attack": 65,
+    "base_defence": 70,
+    "types": [
+      "Ice"
+    ]
+  },
+  {
+    "id": "31B",
+    "name": "Gobfin Ignis",
+    "base_hp": 90,
+    "base_attack": 90,
+    "base_defence": 75,
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "32B",
+    "name": "Hangyu Cryst",
+    "base_hp": 80,
+    "base_attack": 80,
+    "base_defence": 70,
+    "types": [
+      "Ice"
+    ]
+  },
+  {
+    "id": "33B",
+    "name": "Mossanda Lux",
+    "base_hp": 100,
+    "base_attack": 100,
+    "base_defence": 100,
+    "types": [
+      "Electric"
+    ]
+  },
+  {
+    "id": "37B",
+    "name": "Eikthyrdeer Terra",
+    "base_hp": 95,
+    "base_attack": 80,
+    "base_defence": 80,
+    "types": [
+      "Ground"
+    ]
+  },
+  {
+    "id": "40B",
+    "name": "Incineram Noct",
+    "base_hp": 95,
+    "base_attack": 105,
+    "base_defence": 85,
+    "types": [
+      "Dark"
+    ]
+  },
+  {
+    "id": "45B",
+    "name": "Leezpunk Ignis",
+    "base_hp": 80,
+    "base_attack": 80,
+    "base_defence": 50,
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "48B",
+    "name": "Robinquill Terra",
+    "base_hp": 90,
+    "base_attack": 105,
+    "base_defence": 80,
+    "types": [
+      "Grass",
+      "Ground"
+    ]
+  },
+  {
+    "id": "58B",
+    "name": "Pyrin Noct",
+    "base_hp": 100,
+    "base_attack": 95,
+    "base_defence": 90,
+    "types": [
+      "Fire",
+      "Dark"
+    ]
+  },
+  {
+    "id": "64B",
+    "name": "Dinossom Lux",
+    "base_hp": 110,
+    "base_attack": 90,
+    "base_defence": 90,
+    "types": [
+      "Electric",
+      "Dragon"
+    ]
+  },
+  {
+    "id": "65B",
+    "name": "Surfent Terra",
+    "base_hp": 90,
+    "base_attack": 90,
+    "base_defence": 100,
+    "types": [
+      "Ground"
+    ]
+  },
+  {
+    "id": "71B",
+    "name": "Vanwyrm Cryst",
+    "base_hp": 90,
+    "base_attack": 120,
+    "base_defence": 95,
+    "types": [
+      "Ice",
+      "Dark"
+    ]
+  },
+  {
+    "id": "80B",
+    "name": "Elphidran Aqua",
+    "base_hp": 115,
+    "base_attack": 80,
+    "base_defence": 95,
+    "types": [
+      "Dragon",
+      "Water"
+    ]
+  },
+  {
+    "id": "81B",
+    "name": "Kelpsea Ignis",
+    "base_hp": 70,
+    "base_attack": 70,
+    "base_defence": 70,
+    "types": [
+      "Fire"
+    ]
+  },
+  {
+    "id": "84B",
+    "name": "Blazehowl Noct",
+    "base_hp": 105,
+    "base_attack": 115,
+    "base_defence": 80,
+    "types": [
+      "Fire",
+      "Dark"
+    ]
+  },
+  {
+    "id": "85B",
+    "name": "Relaxaurus Lux",
+    "base_hp": 110,
+    "base_attack": 110,
+    "base_defence": 75,
+    "types": [
+      "Dragon",
+      "Electric"
+    ]
+  },
+  {
+    "id": "86B",
+    "name": "Broncherry Aqua",
+    "base_hp": 120,
+    "base_attack": 95,
+    "base_defence": 100,
+    "types": [
+      "Grass",
+      "Water"
+    ]
+  },
+  {
+    "id": "88B",
+    "name": "Reptyro Cryst",
+    "base_hp": 110,
+    "base_attack": 105,
+    "base_defence": 130,
+    "types": [
+      "Ice",
+      "Ground"
+    ]
+  },
+  {
+    "id": "89B",
+    "name": "Kingpaca Cryst",
+    "base_hp": 120,
+    "base_attack": 85,
+    "base_defence": 90,
+    "types": [
+      "Ice"
+    ]
+  },
+  {
+    "id": "90B",
+    "name": "Mammorest Cryst",
+    "base_hp": 150,
+    "base_attack": 85,
+    "base_defence": 90,
+    "types": [
+      "Ice"
+    ]
+  },
+  {
+    "id": "91B",
+    "name": "Wumpo Botan",
+    "base_hp": 140,
+    "base_attack": 80,
+    "base_defence": 110,
+    "types": [
+      "Grass"
     ]
   }
 ]
