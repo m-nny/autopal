@@ -28,7 +28,7 @@ func (pb *PalBase) String() string {
 	return fmt.Sprintf("%s (%s)", pb.Name, pb.Id)
 }
 
-type PalBases []PalBase
+type PalBases map[PalBaseId]PalBase
 
 func (b PalBases) All() iter.Seq[PalBase] {
 	return func(yield func(PalBase) bool) {
@@ -38,6 +38,11 @@ func (b PalBases) All() iter.Seq[PalBase] {
 			}
 		}
 	}
+}
+
+func (b PalBases) Find(id PalBaseId) (PalBase, bool) {
+	item, ok := b[id]
+	return item, ok
 }
 
 var _palBases PalBases
@@ -56,8 +61,13 @@ func LoadPalBases() error {
 	if err != nil {
 		return err
 	}
-	if err := json.Unmarshal(buf, &_palBases); err != nil {
+	var allPals []PalBase
+	if err := json.Unmarshal(buf, &allPals); err != nil {
 		return err
+	}
+	_palBases = make(PalBases)
+	for _, item := range allPals {
+		_palBases[item.Id] = item
 	}
 	return nil
 }

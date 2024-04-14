@@ -9,10 +9,7 @@ import (
 
 func TestLoadPalBases(t *testing.T) {
 	require := require.New(t)
-	updateDataDirFlag()
-	defer resetDataDirFlag()
-	err := LoadPalBases()
-	require.NoError(err)
+	testLoadPalBases(t)
 	require.NotEmpty(len(_palBases))
 	for item := range _palBases.All() {
 		require.NotEmpty(item.Id, item)
@@ -24,9 +21,9 @@ func TestLoadPalBases(t *testing.T) {
 	}
 }
 
-func updateDataDirFlag() {
+func testLoadPalBases(t testing.TB) {
+	require := require.New(t)
 	flag.Set("data_dir", "../../data/")
-}
-func resetDataDirFlag() {
-	flag.Set("data_dir", "./data/")
+	err := LoadPalBases()
+	require.NoError(err)
 }
