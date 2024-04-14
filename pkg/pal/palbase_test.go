@@ -13,6 +13,12 @@ func TestLoadPalBases(t *testing.T) {
 	err := LoadPalBases()
 	if assert.NoError(t, err) {
 		assert.True(t, len(_palBases) > 0)
+		for item := range _palBases.All() {
+			assert.NotEmpty(t, item.Name)
+			assert.NotEmpty(t, item.Id)
+			assert.NotEmpty(t, item.Types)
+			assert.True(t, len(item.Types) > 0)
+		}
 	}
 }
 

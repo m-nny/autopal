@@ -12,9 +12,9 @@ var dataDir = flag.String("data_dir", "./data", "path to data dir")
 
 type PalBaseId string
 type PalBase struct {
-	Id   PalBaseId
-	Name string
-	Type string
+	Id    PalBaseId
+	Name  string
+	Types []string
 }
 
 type PalBases []PalBase
