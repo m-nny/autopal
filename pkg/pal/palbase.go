@@ -14,7 +14,7 @@ type PalBaseId string
 type PalBase struct {
 	Id    PalBaseId
 	Name  string
-	Types []string
+	Types []Type
 }
 
 type PalBases []PalBase
