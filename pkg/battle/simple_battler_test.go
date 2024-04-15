@@ -20,25 +20,23 @@ func Test_SimpleBattler_Duel(t *testing.T) {
 		name          string
 		player        pal.Pal
 		playerSpeed   int
+		playerTypes   []pal.Type
 		opponent      pal.Pal
 		opponentSpeed int
+		opponentTypes []pal.Type
 		wantResult    Result
 	}{
 		{
-			name:          "Strong vs Weak pal",
-			player:        strongPal,
-			playerSpeed:   50,
-			opponent:      weakPal,
-			opponentSpeed: 50,
-			wantResult:    ResultWin,
+			name:       "Strong vs Weak pal",
+			player:     strongPal,
+			opponent:   weakPal,
+			wantResult: ResultWin,
 		},
 		{
-			name:          "Weak vs Strong pal",
-			player:        weakPal,
-			playerSpeed:   50,
-			opponent:      strongPal,
-			opponentSpeed: 50,
-			wantResult:    ResultLoose,
+			name:       "Weak vs Strong pal",
+			player:     weakPal,
+			opponent:   strongPal,
+			wantResult: ResultLoose,
 		},
 		{
 			name:          "Same pal",
@@ -64,12 +62,44 @@ func Test_SimpleBattler_Duel(t *testing.T) {
 			opponentSpeed: 51,
 			wantResult:    ResultLoose,
 		},
+		{
+			name:          "Fire vs Grass",
+			player:        weakPal,
+			playerSpeed:   50,
+			playerTypes:   []pal.Type{pal.TypeFire},
+			opponent:      weakPal,
+			opponentSpeed: 50,
+			opponentTypes: []pal.Type{pal.TypeGrass},
+			wantResult:    ResultWin,
+		},
+		{
+			name:          "Grass vs Fire",
+			player:        weakPal,
+			playerSpeed:   50,
+			playerTypes:   []pal.Type{pal.TypeGrass},
+			opponent:      weakPal,
+			opponentSpeed: 50,
+			opponentTypes: []pal.Type{pal.TypeFire},
+			wantResult:    ResultLoose,
+		},
 	}
 	for _, test := range testCases {
 		t.Run(test.name, func(t *testing.T) {
-			test.player.Speed = test.playerSpeed
-			test.opponent.Speed = test.opponentSpeed
-			gotResult := battler.Duel(test.player, test.opponent)
+			player := test.player
+			opponent := test.opponent
+			if test.playerSpeed != 0 {
+				player.Speed = test.playerSpeed
+			}
+			if test.opponentSpeed != 0 {
+				opponent.Speed = test.opponentSpeed
+			}
+			if len(test.playerTypes) > 0 {
+				player.Types = test.playerTypes
+			}
+			if len(test.opponentTypes) > 0 {
+				opponent.Types = test.opponentTypes
+			}
+			gotResult := battler.Duel(player, opponent)
 			require.Equal(t, test.wantResult, gotResult)
 		})
 	}

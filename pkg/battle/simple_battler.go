@@ -36,7 +36,7 @@ func newBattlePal(p pal.Pal) *battlePal {
 	}
 }
 
-func (player *battlePal) Attack(opponent *battlePal) {
+func (player *battlePal) Attack(opponent *battlePal) int {
 	dmg := player.BaseAttack
 	attackType := player.Types[0]
 	for _, playerType := range player.Types {
@@ -46,11 +46,11 @@ func (player *battlePal) Attack(opponent *battlePal) {
 		dmg /= opponentType.Stronger([]pal.Type{attackType})
 	}
 	opponent.currentHp -= dmg
+	return opponent.currentHp
 }
 
 // Duel battles 2 pals
 //   - TODO: take defence into account
-//   - TODO: take types into effect
 func (s *SimpleBattler) Duel(playerPal, opponentPal pal.Pal) Result {
 	player := newBattlePal(playerPal)
 	opponent := newBattlePal(opponentPal)
@@ -62,18 +62,15 @@ func (s *SimpleBattler) Duel(playerPal, opponentPal pal.Pal) Result {
 			continue
 		}
 		if player.Speed > opponent.Speed {
-			player.Attack(opponent)
-			if opponent.currentHp <= 0 {
+			if player.Attack(opponent) <= 0 {
 				return ResultWin
 			}
 		}
-		opponent.Attack(player)
-		if player.currentHp <= 0 {
+		if opponent.Attack(player) <= 0 {
 			return ResultLoose
 		}
 		if opponent.Speed > player.Speed {
-			player.Attack(opponent)
-			if opponent.currentHp <= 0 {
+			if player.Attack(opponent) <= 0 {
 				return ResultWin
 			}
 		}
