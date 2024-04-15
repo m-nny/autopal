@@ -1,16 +1,18 @@
-package pal
+package pal_test
 
 import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
+	"minmax.uk/autopal/pkg/pal"
+	"minmax.uk/autopal/pkg/pal/paltest"
 )
 
 func TestNewPal(t *testing.T) {
-	testLoadPalBases(t)
+	paltest.Prep(t)
 	testCases := []struct {
 		name    string
-		id      PalBaseId
+		id      pal.PalBaseId
 		wantErr bool
 	}{
 		{
@@ -27,7 +29,7 @@ func TestNewPal(t *testing.T) {
 	for _, test := range testCases {
 		t.Run(test.name, func(t *testing.T) {
 			require := require.New(t)
-			got, err := NewPal(test.id)
+			got, err := pal.NewPal(test.id)
 			if test.wantErr {
 				require.Error(err)
 				return
@@ -36,8 +38,8 @@ func TestNewPal(t *testing.T) {
 			}
 			require.Equal(got.Id, test.id)
 			require.NotEmpty(got.Name)
-			require.GreaterOrEqual(got.Speed, SPEED_MIN)
-			require.LessOrEqual(got.Speed, SPEED_MAX)
+			require.GreaterOrEqual(got.Speed, pal.SPEED_MIN)
+			require.LessOrEqual(got.Speed, pal.SPEED_MAX)
 		})
 	}
 }
