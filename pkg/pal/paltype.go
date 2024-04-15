@@ -50,3 +50,19 @@ func (t *Type) UnmarshalJSON(data []byte) error {
 	}
 	return fmt.Errorf("Type %s not found", s)
 }
+
+var _strongTypeMap = map[Type][]Type{
+	TypeFire:     {TypeGrass, TypeIce},
+	TypeGrass:    {TypeGround},
+	TypeGround:   {TypeElectric},
+	TypeElectric: {TypeWater},
+	TypeWater:    {TypeFire},
+	TypeIce:      {TypeDragon},
+	TypeDragon:   {TypeDark},
+	TypeDark:     {TypeNeutral},
+}
+
+func (t Type) Stronger(o []Type) int {
+	weak := len(_strongTypeMap[t])
+	return 1 << weak
+}

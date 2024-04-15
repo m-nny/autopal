@@ -10,6 +10,7 @@ import (
 
 func TestNewPal(t *testing.T) {
 	paltest.Prep(t)
+	rand := paltest.Rand()
 	testCases := []struct {
 		name    string
 		id      pal.PalBaseId
@@ -29,7 +30,7 @@ func TestNewPal(t *testing.T) {
 	for _, test := range testCases {
 		t.Run(test.name, func(t *testing.T) {
 			require := require.New(t)
-			got, err := pal.NewPal(test.id)
+			got, err := pal.NewPal(rand, test.id)
 			if test.wantErr {
 				require.Error(err)
 				return
