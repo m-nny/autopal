@@ -1,6 +1,7 @@
 package battle
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -64,20 +65,20 @@ func Test_SimpleBattler_Duel(t *testing.T) {
 		},
 		{
 			name:          "Fire vs Grass",
-			player:        weakPal,
+			player:        strongPal,
 			playerSpeed:   50,
 			playerTypes:   []pal.Type{pal.TypeFire},
-			opponent:      weakPal,
+			opponent:      strongPal,
 			opponentSpeed: 50,
 			opponentTypes: []pal.Type{pal.TypeGrass},
 			wantResult:    ResultWin,
 		},
 		{
 			name:          "Grass vs Fire",
-			player:        weakPal,
+			player:        strongPal,
 			playerSpeed:   50,
 			playerTypes:   []pal.Type{pal.TypeGrass},
-			opponent:      weakPal,
+			opponent:      strongPal,
 			opponentSpeed: 50,
 			opponentTypes: []pal.Type{pal.TypeFire},
 			wantResult:    ResultLoose,
@@ -102,5 +103,101 @@ func Test_SimpleBattler_Duel(t *testing.T) {
 			gotResult := battler.Duel(player, opponent)
 			require.Equal(t, test.wantResult, gotResult)
 		})
+	}
+}
+
+func Test_Attack(t *testing.T) {
+	paltest.Prep(t)
+	rand := paltest.Rand()
+	testStats := []struct {
+		baseAttack  int
+		baseDefence int
+		wantDmg     int
+	}{
+		// Neutral vs Neutral
+		{
+			baseAttack:  100,
+			baseDefence: 100,
+			wantDmg:     100,
+		},
+		{
+			baseAttack:  100,
+			baseDefence: 80,
+			wantDmg:     120,
+		},
+		{
+			baseAttack:  120,
+			baseDefence: 100,
+			wantDmg:     120,
+		},
+		{
+			baseAttack:  100,
+			baseDefence: 120,
+			wantDmg:     80,
+		},
+		{
+			baseAttack:  120,
+			baseDefence: 120,
+			wantDmg:     100,
+		},
+	}
+	testTypes := []struct {
+		player        []pal.Type
+		opponent      []pal.Type
+		wantScaleUp   int
+		wantScaleDown int
+	}{
+		{
+			player:        []pal.Type{pal.TypeNeutral},
+			opponent:      []pal.Type{pal.TypeNeutral},
+			wantScaleUp:   1,
+			wantScaleDown: 1,
+		},
+		{
+			player:        []pal.Type{pal.TypeDark},
+			opponent:      []pal.Type{pal.TypeNeutral},
+			wantScaleUp:   2,
+			wantScaleDown: 1,
+		},
+		{
+			player:        []pal.Type{pal.TypeNeutral},
+			opponent:      []pal.Type{pal.TypeDark},
+			wantScaleUp:   1,
+			wantScaleDown: 2,
+		},
+		{
+			player:        []pal.Type{pal.TypeFire},
+			opponent:      []pal.Type{pal.TypeGrass, pal.TypeIce},
+			wantScaleUp:   4,
+			wantScaleDown: 1,
+		},
+	}
+	for _, testType := range testTypes {
+		for _, testStat := range testStats {
+			test_name := fmt.Sprintf("%03d_%03d_%v_%v", testStat.baseAttack, testStat.baseDefence, testType.player, testType.opponent)
+			t.Run(test_name, func(t *testing.T) {
+				require := require.New(t)
+				baseBal, err := pal.NewPal(rand, "78")
+				require.NoError(err)
+
+				baseBal.BaseAttack = testStat.baseAttack
+				baseBal.BaseDefence = testStat.baseDefence
+
+				player := newBattlePal(baseBal)
+				if len(testType.player) > 0 {
+					player.Types = testType.player
+				}
+				opponent := newBattlePal(baseBal)
+				if len(testType.opponent) > 0 {
+					opponent.Types = testType.opponent
+				}
+				oldHp := opponent.currentHp
+				newHp := player.Attack(opponent)
+				gotDmg := oldHp - newHp
+				wantDmt := testStat.wantDmg * testType.wantScaleUp / testType.wantScaleDown
+				// fmt.Printf("%s: %d\n", test_name, wantDmt)
+				require.Equal(wantDmt, gotDmg)
+			})
+		}
 	}
 }

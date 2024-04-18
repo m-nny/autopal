@@ -3,6 +3,7 @@ package pal
 import (
 	"encoding/json"
 	"fmt"
+	"slices"
 	"strings"
 )
 
@@ -63,6 +64,11 @@ var _strongTypeMap = map[Type][]Type{
 }
 
 func (t Type) Stronger(o []Type) int {
-	weak := len(_strongTypeMap[t])
-	return 1 << weak
+	cnt := 0
+	for _, weak := range _strongTypeMap[t] {
+		if slices.Contains(o, weak) {
+			cnt++
+		}
+	}
+	return 1 << cnt
 }

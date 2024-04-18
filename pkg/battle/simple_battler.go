@@ -37,13 +37,15 @@ func newBattlePal(p pal.Pal) *battlePal {
 }
 
 func (player *battlePal) Attack(opponent *battlePal) int {
-	dmg := player.BaseAttack
+	dmg := 100 + (player.BaseAttack - opponent.BaseDefence)
 	attackType := player.Types[0]
 	for _, playerType := range player.Types {
-		dmg *= playerType.Stronger(opponent.Types)
+		scale := playerType.Stronger(opponent.Types)
+		dmg *= scale
 	}
 	for _, opponentType := range opponent.Types {
-		dmg /= opponentType.Stronger([]pal.Type{attackType})
+		scale := opponentType.Stronger([]pal.Type{attackType})
+		dmg /= scale
 	}
 	opponent.currentHp -= dmg
 	return opponent.currentHp
