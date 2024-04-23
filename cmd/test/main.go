@@ -1,19 +1,30 @@
 package main
 
 import (
+	"context"
 	"flag"
-	"fmt"
 	"log"
 
-	"minmax.uk/autopal/pkg/pal"
+	"minmax.uk/autopal/pkg/brain"
 )
 
+var dbDsn = flag.String("dsn", "file:./data/turso.db", "filepath to db")
+var username = flag.String("username", "minmax", "username")
+
 func main() {
+	ctx := context.Background()
 	flag.Parse()
-	if err := pal.LoadPalBases(); err != nil {
-		log.Fatalf("could not load PalBases: %v", err)
+	b, err := brain.New(*dbDsn)
+	if err != nil {
+		log.Fatal(err)
 	}
-	for item := range pal.AllPalBases() {
-		fmt.Printf("%s\n\t%+v\n", item.String(), item)
+	defer b.Close()
+
+	user, err := b.UpsertUser(ctx, *username)
+	if err != nil {
+		log.Fatal(err)
 	}
+	log.Printf("user: %+v", user)
+
+	log.Print("done.")
 }
