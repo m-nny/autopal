@@ -7,10 +7,10 @@ import (
 
 var cell_to_char = map[bool]rune{
 	false: '.',
-	true:  '#',
+	true:  'O',
 }
 var EMPTY_CELLS = "."
-var FULL_CELLS = "#"
+var FULL_CELLS = "O#"
 var SKIP_CELLS = "\n\t "
 
 type GameState struct {
@@ -70,6 +70,32 @@ func (s *GameState) String() string {
 		}
 	}
 	return builder.String()
+}
+
+func (s *GameState) Next() *GameState {
+	new_s := EmptyGame(s.cols, s.rows)
+	for row := range s.rows {
+		for col := range s.cols {
+			neighbours := 0
+			for d_row := -1; d_row <= 1; d_row++ {
+				for d_col := -1; d_col <= 1; d_col++ {
+					if d_row == 0 && d_col == 0 {
+						continue
+					}
+					neighbours += s.cntAt(col+d_col, row+d_row)
+				}
+			}
+			i := s.absPos(col, row)
+			if s.cells[i] && 2 <= neighbours && neighbours <= 4 {
+				// Any live cell with two or three live neighbors lives on to the next generation.
+				new_s.cells[i] = true
+			}
+			if !s.cells[i] && neighbours == 3 {
+				new_s.cells[i] = true
+			}
+		}
+	}
+	return new_s
 }
 
 func (s *GameState) normPos(col, row int) (int, int) {

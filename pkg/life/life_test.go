@@ -68,3 +68,56 @@ func Test_FromString(t *testing.T) {
 		})
 	}
 }
+
+func Test_Next_OnOsclillators(t *testing.T) {
+	oscilators := []struct {
+		name        string
+		rows        int
+		cols        int
+		init_state  string
+		want_boards []string
+	}{
+		{
+			name: "Blinker",
+			rows: 5,
+			cols: 5,
+			init_state: `
+				.....
+				..#..
+				..#..
+				..#..
+				.....
+			`,
+			want_boards: []string{`
+				.....
+				.....
+				.###.
+				.....
+				.....
+			`, `
+				.....
+				..#..
+				..#..
+				..#..
+				.....
+			`},
+		},
+	}
+	for _, test := range oscilators {
+		t.Run(test.name, func(t *testing.T) {
+			require := require.New(t)
+			gotState, err := FromString(test.cols, test.rows, test.init_state)
+			require.NoError(err)
+			for i, want_cell := range test.want_boards {
+				gotState = gotState.Next()
+				requireState(t, want_cell, gotState, "iteration #%d does not match", i+1)
+			}
+		})
+	}
+}
+
+func requireState(t testing.TB, wantBoard string, gotState *GameState, msgAndArgs ...any) {
+	wantState, err := FromString(gotState.cols, gotState.rows, wantBoard)
+	require.NoError(t, err)
+	require.Equal(t, wantState.cells, gotState.cells, msgAndArgs...)
+}
