@@ -11,3 +11,4 @@ cmd_server
 /target
 /out
 connection_server
+/debug.log

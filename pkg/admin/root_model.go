@@ -1,112 +1,76 @@
 package admin
 
 import (
-	"fmt"
-	"io"
-	"strings"
-
-	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/lipgloss"
+	"minmax.uk/autopal/pkg/admin/common"
+	"minmax.uk/autopal/pkg/brain"
 )
 
-var _ list.Item = item("")
+var _ tea.Model = (*rootModel)(nil)
 
-type item string
-
-func (i item) FilterValue() string { return "" }
-
-var _ list.ItemDelegate = itemDelegate{}
-
-var (
-	itemStyle         = lipgloss.NewStyle().PaddingLeft(4)
-	selectedItemStyle = lipgloss.NewStyle().PaddingLeft(2).Foreground(lipgloss.Color("170"))
-	quitTextStyle     = lipgloss.NewStyle().Margin(1, 0, 2, 4)
-)
-
-type itemDelegate struct{}
-
-func (d itemDelegate) Height() int                             { return 1 }
-func (d itemDelegate) Spacing() int                            { return 0 }
-func (d itemDelegate) Update(_ tea.Msg, _ *list.Model) tea.Cmd { return nil }
-func (d itemDelegate) Render(w io.Writer, m list.Model, index int, listItem list.Item) {
-	i, ok := listItem.(item)
-	if !ok {
-		return
-	}
-
-	str := fmt.Sprintf("%d. %s", index+1, i)
-
-	fn := itemStyle.Render
-	if index == m.Index() {
-		fn = func(s ...string) string {
-			return selectedItemStyle.Render("> " + strings.Join(s, " "))
-		}
-	}
-
-	fmt.Fprint(w, fn(str))
+type rootModel struct {
+	submodels      []tea.Model
+	submodelNames  []string
+	activeSubmodel tea.Model
+	cursor         int
 }
 
-type errMsg error
-
-var _ tea.Model = (*RootModel)(nil)
-
-type RootModel struct {
-	list     list.Model
-	choice   string
-	quitting bool
-}
-
-func NewModel() *RootModel {
-	items := []list.Item{
-		item("Ramen"),
-		item("Tomato Soup"),
-	}
-	l := list.New(items, itemDelegate{}, 20, 14)
-	l.Title = "What do you want for dinner?"
-	l.SetShowStatusBar(false)
-	l.SetFilteringEnabled(false)
-	l.Styles.Title = lipgloss.NewStyle().MarginLeft(2)
-	l.Styles.PaginationStyle = list.DefaultStyles().PaginationStyle.PaddingLeft(4)
-	l.Styles.HelpStyle = list.DefaultStyles().HelpStyle.PaddingLeft(4).PaddingBottom(1)
-	return &RootModel{
-		list: l,
+func NewRootModel(b *brain.Brain, username string) *rootModel {
+	return &rootModel{
+		submodels:     []tea.Model{NewGetUserInfoModel(b, username), NewCreateUserModel(b, username)},
+		submodelNames: []string{"Get user", "Create user"},
 	}
 }
 
-func (m *RootModel) Init() tea.Cmd {
+func (m *rootModel) Init() tea.Cmd {
 	return nil
 }
 
-func (m *RootModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+func (m *rootModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	if m.activeSubmodel != nil {
+		if _, ok := msg.(common.MsgHome); ok {
+			m.activeSubmodel = nil
+			return m, nil
+		}
+		var cmd tea.Cmd
+		m.activeSubmodel, cmd = m.activeSubmodel.Update(msg)
+		return m, cmd
+	}
 	switch msg := msg.(type) {
-	case tea.WindowSizeMsg:
-		m.list.SetWidth(msg.Width)
-		return m, nil
 	case tea.KeyMsg:
 		switch keypress := msg.String(); keypress {
 		case "q", "ctrl+c":
-			m.quitting = true
 			return m, tea.Quit
-		case "enter":
-			i, ok := m.list.SelectedItem().(item)
-			if ok {
-				m.choice = string(i)
+		case "up", "k":
+			if m.cursor > 0 {
+				m.cursor--
 			}
-			return m, tea.Quit
+		case "down", "j":
+			if m.cursor+1 < len(m.submodelNames) {
+				m.cursor++
+			}
+		case "enter":
+			m.activeSubmodel = m.submodels[m.cursor]
+			return m, m.activeSubmodel.Init()
 		}
 	}
-	var cmd tea.Cmd
-	m.list, cmd = m.list.Update(msg)
-	return m, cmd
+	return m, nil
 }
 
-func (m *RootModel) View() string {
-	if m.choice != "" {
-		return quitTextStyle.Render(fmt.Sprintf("%s? Sounds good for me.", m.choice))
+func (m *rootModel) View() string {
+	if m.activeSubmodel != nil {
+		return m.activeSubmodel.View()
 	}
-	if m.quitting {
-		return quitTextStyle.Render("Not hungry? That's cool.")
+	s := "What do you want to do?\n"
+	for i, choice := range m.submodelNames {
+		line := " "
+		if i == m.cursor {
+			line = ">"
+		}
+		line += " " + choice + "\n"
+		s += line
 	}
-	return "\n" + m.list.View()
+	s += "\nPress ender to select.\n"
+	s += "\nPress q to quit.\n"
+	return s
 }

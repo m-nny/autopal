@@ -11,6 +11,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"minmax.uk/autopal/pkg/admin"
+	"minmax.uk/autopal/pkg/brain"
 	pb "minmax.uk/autopal/proto"
 )
 
@@ -32,13 +33,18 @@ func getClient(addr string) (pb.MainServiceClient, error) {
 
 func main() {
 	flag.Parse()
-	c, err := getClient(*addr)
-	// b, err := brain.New(*dbDsn)
+	b, err := brain.New(*dbDsn)
 	if err != nil {
 		log.Fatal(err)
 	}
-	p := tea.NewProgram(admin.NewUserInfoModel(c, *username))
+	// p := tea.NewProgram(admin.NewUserInfoModel(b, *username))
 	// p := tea.NewProgram(admin.NewCreateUserModel(b, *username))
+	logf, err := tea.LogToFile("debug.log", "debug")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer logf.Close()
+	p := tea.NewProgram(admin.NewRootModel(b, *username))
 	if _, err := p.Run(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
