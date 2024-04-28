@@ -6,7 +6,7 @@ import (
 )
 
 func newCreateUserModel(b *brain.Brain, username string) submodelItem {
-	model := rpc.New(func() (*brain.User, error) {
+	model := rpc.New("Creating new user", func() (*brain.User, error) {
 		user, err := b.CreateUser(username)
 		return user, err
 	})
@@ -14,7 +14,7 @@ func newCreateUserModel(b *brain.Brain, username string) submodelItem {
 }
 
 func newGetUserInfoModel(b *brain.Brain, username string) submodelItem {
-	model := rpc.New(func() (*brain.User, error) {
+	model := rpc.New("Geting user", func() (*brain.User, error) {
 		user, err := b.GetUser(username)
 		return user, err
 	})

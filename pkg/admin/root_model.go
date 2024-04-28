@@ -9,7 +9,8 @@ import (
 )
 
 var (
-	docStyle = lipgloss.NewStyle().Margin(1, 0)
+	docStyle = lipgloss.NewStyle().
+		Margin(1)
 )
 
 var _ list.DefaultItem = submodelItem{}
@@ -45,9 +46,7 @@ func NewRootModel(b *brain.Brain, username string) *rootModel {
 	ld.ShowDescription = false
 	l := list.New(items, ld, 0, 0)
 	l.Title = "What do you want to do?"
-	return &rootModel{
-		list: l,
-	}
+	return &rootModel{list: l}
 }
 
 func (m *rootModel) Init() tea.Cmd {
@@ -86,8 +85,11 @@ func (m *rootModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m *rootModel) View() string {
+	var content string
 	if m.activeSubmodel != nil {
-		return m.activeSubmodel.View()
+		content = m.activeSubmodel.View()
+	} else {
+		content = m.list.View()
 	}
-	return docStyle.Render(m.list.View())
+	return docStyle.Render(content)
 }
