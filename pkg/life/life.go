@@ -29,6 +29,9 @@ func FromString(cols int, rows int, str string) (*GameState, error) {
 		if strings.ContainsRune(SKIP_CELLS, rune) {
 			continue
 		}
+		if i == cols*rows {
+			return nil, fmt.Errorf("too much chars")
+		}
 		if strings.ContainsRune(EMPTY_CELLS, rune) {
 			g.cells[i] = false
 		} else if strings.ContainsRune(FULL_CELLS, rune) {
@@ -86,7 +89,7 @@ func (s *GameState) Next() *GameState {
 				}
 			}
 			i := s.absPos(col, row)
-			if s.cells[i] && 2 <= neighbours && neighbours <= 4 {
+			if s.cells[i] && 2 <= neighbours && neighbours < 4 {
 				// Any live cell with two or three live neighbors lives on to the next generation.
 				new_s.cells[i] = true
 			}
