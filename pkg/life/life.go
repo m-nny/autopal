@@ -16,7 +16,7 @@ var SKIP_CELLS = "\n\t "
 type GameState struct {
 	cols  int
 	rows  int
-	cells [][]bool
+	cells []bool
 }
 
 func FromString(cols int, rows int, str string) (*GameState, error) {
@@ -29,12 +29,10 @@ func FromString(cols int, rows int, str string) (*GameState, error) {
 		if strings.ContainsRune(SKIP_CELLS, rune) {
 			continue
 		}
-		row := i / cols
-		col := i % cols
 		if strings.ContainsRune(EMPTY_CELLS, rune) {
-			g.cells[row][col] = false
+			g.cells[i] = false
 		} else if strings.ContainsRune(FULL_CELLS, rune) {
-			g.cells[row][col] = true
+			g.cells[i] = true
 		} else {
 			return nil, fmt.Errorf("illegal rune: {%+v} {%d}", rune, rune)
 		}
@@ -46,11 +44,16 @@ func FromString(cols int, rows int, str string) (*GameState, error) {
 	return g, nil
 }
 
-func EmptyGame(cols int, rows int) *GameState {
-	cells := make([][]bool, rows, rows)
-	for row := range rows {
-		cells[row] = make([]bool, cols, cols)
+func MustFromString(cols, rows int, str string) *GameState {
+	g, err := FromString(cols, rows, str)
+	if err != nil {
+		panic(fmt.Sprintf("FromString() errored: %v", err))
 	}
+	return g
+}
+
+func EmptyGame(cols int, rows int) *GameState {
+	cells := make([]bool, cols*rows, cols*rows)
 	return &GameState{cols, rows, cells}
 }
 
@@ -58,7 +61,8 @@ func (s *GameState) String() string {
 	var builder strings.Builder
 	for row := range s.rows {
 		for col := range s.cols {
-			cell := s.cells[row][col]
+			i := row*s.cols + col
+			cell := s.cells[i]
 			builder.WriteRune(cell_to_char[cell])
 		}
 		if row+1 < s.rows {
@@ -66,4 +70,23 @@ func (s *GameState) String() string {
 		}
 	}
 	return builder.String()
+}
+
+func (s *GameState) normPos(col, row int) (int, int) {
+	col = (col + s.cols) % s.cols
+	row = (row + s.rows) % s.rows
+	return col, row
+}
+
+func (s *GameState) absPos(col, row int) int {
+	i := row*s.cols + col
+	return i
+}
+
+func (s *GameState) cntAt(col, row int) int {
+	i := s.absPos(s.normPos(col, row))
+	if s.cells[i] {
+		return 1
+	}
+	return 0
 }

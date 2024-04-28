@@ -13,7 +13,7 @@ func Test_EmptyGame(t *testing.T) {
 	gotState := EmptyGame(cols, rows)
 	wantState := &GameState{
 		cols: cols, rows: rows,
-		cells: [][]bool{{false, false, false, false}, {false, false, false, false}, {false, false, false, false}},
+		cells: []bool{false, false, false, false, false, false, false, false, false, false, false, false},
 	}
 	require.Equal(wantState, gotState)
 
@@ -29,7 +29,7 @@ func Test_FromString(t *testing.T) {
 		cols      int
 		str       string
 		wantErr   bool
-		wantCells [][]bool
+		wantCells []bool
 	}{
 		{
 			name: "empty board with dots",
@@ -40,7 +40,7 @@ func Test_FromString(t *testing.T) {
 			....
 			....
 `,
-			wantCells: [][]bool{{false, false, false, false}, {false, false, false, false}, {false, false, false, false}},
+			wantCells: []bool{false, false, false, false, false, false, false, false, false, false, false, false},
 		},
 		{
 			name: "empty board with dots",
@@ -51,7 +51,7 @@ func Test_FromString(t *testing.T) {
 			.#..
 			..#.
 `,
-			wantCells: [][]bool{{true, false, false, false}, {false, true, false, false}, {false, false, true, false}},
+			wantCells: []bool{true, false, false, false, false, true, false, false, false, false, true, false},
 		},
 	}
 	for _, test := range testCases {
