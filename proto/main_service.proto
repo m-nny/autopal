@@ -4,7 +4,7 @@ option go_package = "minmax.uk/autopal/proto";
 
 package autopal;
 
-service Server {
+service MainService {
   rpc SayHello (HelloRequest) returns (HelloResponse) {}
 }
 

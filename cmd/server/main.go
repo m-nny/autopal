@@ -16,7 +16,7 @@ var (
 )
 
 type server struct {
-	pb.UnimplementedServerServer
+	pb.UnimplementedMainServiceServer
 }
 
 func (s *server) SayHello(ctx context.Context, req *pb.HelloRequest) (*pb.HelloResponse, error) {
@@ -32,7 +32,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
-	pb.RegisterServerServer(s, &server{})
+	pb.RegisterMainServiceServer(s, &server{})
 	log.Printf("server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)

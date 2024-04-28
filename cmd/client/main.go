@@ -24,7 +24,7 @@ func main() {
 		log.Fatalf("failed to connect: %v", err)
 	}
 	defer conn.Close()
-	c := pb.NewServerClient(conn)
+	c := pb.NewMainServiceClient(conn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), *timeout)
 	defer cancel()
