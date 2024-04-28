@@ -27,4 +27,5 @@ message GetUserInfoResponse {
 
 message UserInfo {
   string username = 1;
+  int64 balance = 2;
 }

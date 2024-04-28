@@ -18,6 +18,7 @@ func (s *Server) GetUserInfo(ctx context.Context, req *pb.GetUserInfoRequest) (*
 	return &pb.GetUserInfoResponse{
 		UserInfo: &pb.UserInfo{
 			Username: user.Username,
+			Balance:  int64(user.Balance),
 		},
 	}, nil
 }

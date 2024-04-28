@@ -4,7 +4,8 @@ import "github.com/jmoiron/sqlx"
 
 const _schema = `
 	CREATE TABLE IF NOT EXISTS users (
-		username TEXT PRIMARY KEY
+		username TEXT PRIMARY KEY,
+	  balance INTEGER NOT NULL
 	);
 `
 

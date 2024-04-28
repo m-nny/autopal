@@ -7,6 +7,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"minmax.uk/autopal/pkg/brain"
 	"minmax.uk/autopal/pkg/brain/brain_testing"
 	pb "minmax.uk/autopal/proto"
 )
@@ -29,7 +30,7 @@ func Test_GetUserInfo_Integration(t *testing.T) {
 	_, err = b.CreateUser(username)
 	require.NoError(err)
 
-	want := &pb.GetUserInfoResponse{UserInfo: &pb.UserInfo{Username: username}}
+	want := &pb.GetUserInfoResponse{UserInfo: &pb.UserInfo{Username: username, Balance: brain.UserStartingBalance}}
 	got, err := client.GetUserInfo(ctx, &pb.GetUserInfoRequest{Username: username})
 	require.NoError(err)
 	require.EqualExportedValues(want, got)

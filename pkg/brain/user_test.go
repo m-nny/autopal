@@ -12,7 +12,7 @@ func Test_CreateGetUser(t *testing.T) {
 	require := require.New(t)
 	b := brain_t.NewTestBrain(t)
 	username := "test_username"
-	want := &brain.User{username}
+	want := &brain.User{username, 10}
 
 	_, err := b.GetUser(username)
 	require.ErrorIs(err, brain.ErrNotFound)

@@ -7,13 +7,26 @@ import (
 	"strings"
 )
 
+const (
+	UserStartingBalance = 10
+)
+
 type User struct {
 	Username string `db:"username"`
+	Balance  int    `db:"balance"`
+}
+
+// newUser returns User with some default values
+func newUser(username string) *User {
+	return &User{
+		Username: username,
+		Balance:  UserStartingBalance,
+	}
 }
 
 func (b *Brain) CreateUser(username string) (*User, error) {
-	user := &User{Username: username}
-	_, err := b.db.NamedExec(`INSERT INTO users (username) VALUES (:username)`, user)
+	user := newUser(username)
+	_, err := b.db.NamedExec(`INSERT INTO users (username, balance) VALUES (:username, :balance)`, user)
 	if err != nil {
 		if strings.Contains(err.Error(), "UNIQUE constraint failed") {
 			return nil, fmt.Errorf("user already exists: %w", ErrAlreadyExists)
