@@ -40,7 +40,7 @@ func (b *Brain) GetUser(username string) (*User, error) {
 	var user User
 	if err := b.db.Get(&user, `SELECT * FROM users WHERE username = ?`, username); err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
-			return nil, fmt.Errorf("user does not exist: %w", ErrNotFound)
+			return nil, fmt.Errorf("user [%s] does not exist: %w", username, ErrNotFound)
 		}
 		return nil, err
 	}

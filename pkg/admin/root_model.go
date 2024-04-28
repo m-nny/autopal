@@ -47,6 +47,8 @@ func (d itemDelegate) Render(w io.Writer, m list.Model, index int, listItem list
 	fmt.Fprint(w, fn(str))
 }
 
+type errMsg error
+
 var _ tea.Model = (*RootModel)(nil)
 
 type RootModel struct {
