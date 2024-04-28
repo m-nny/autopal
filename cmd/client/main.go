@@ -12,9 +12,9 @@ import (
 )
 
 var (
-	addr    = flag.String("addr", "localhost:50000", "address to connect to")
-	name    = flag.String("name", "kenobi", "name to report")
-	timeout = flag.Duration("timeout", time.Second, "rpc timeout")
+	addr     = flag.String("addr", "localhost:50000", "address to connect to")
+	username = flag.String("name", "kenobi", "name to report")
+	timeout  = flag.Duration("timeout", time.Second, "rpc timeout")
 )
 
 func main() {
@@ -28,9 +28,9 @@ func main() {
 
 	ctx, cancel := context.WithTimeout(context.Background(), *timeout)
 	defer cancel()
-	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: *name})
+	r, err := c.GetUserInfo(ctx, &pb.GetUserInfoRequest{Username: *username})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}
-	log.Printf("Greeting: %v", r.GetMessage())
+	log.Printf("response: {%+v}", r)
 }

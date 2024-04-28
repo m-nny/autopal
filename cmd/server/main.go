@@ -1,40 +1,28 @@
 package main
 
 import (
-	"context"
 	"flag"
 	"fmt"
 	"log"
-	"net"
 
-	"google.golang.org/grpc"
-	pb "minmax.uk/autopal/proto"
+	"minmax.uk/autopal/pkg/brain"
+	"minmax.uk/autopal/pkg/server"
 )
 
 var (
-	port = flag.Int("port", 50000, "server port")
+	port  = flag.Int("port", 50000, "server port")
+	dbDsn = flag.String("dsn", "file:./data/turso.db", "filepath to db")
 )
-
-type server struct {
-	pb.UnimplementedMainServiceServer
-}
-
-func (s *server) SayHello(ctx context.Context, req *pb.HelloRequest) (*pb.HelloResponse, error) {
-	name := req.GetName()
-	log.Printf("Received: %v", name)
-	return &pb.HelloResponse{Message: "Hello " + name}, nil
-}
 
 func main() {
 	flag.Parse()
-	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", *port))
+	addr := fmt.Sprintf(":%d", *port)
+	b, err := brain.New(*dbDsn)
 	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
+		log.Fatal(err)
 	}
-	s := grpc.NewServer()
-	pb.RegisterMainServiceServer(s, &server{})
-	log.Printf("server listening at %v", lis.Addr())
-	if err := s.Serve(lis); err != nil {
-		log.Fatalf("failed to serve: %v", err)
+	s := server.NewServer(b)
+	if err := s.Serve(addr); err != nil {
+		log.Fatal(err)
 	}
 }

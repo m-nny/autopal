@@ -6,6 +6,7 @@ package autopal;
 
 service MainService {
   rpc SayHello (HelloRequest) returns (HelloResponse) {}
+  rpc GetUserInfo (GetUserInfoRequest) returns (GetUserInfoResponse) {}
 }
 
 message HelloRequest {
@@ -14,4 +15,16 @@ message HelloRequest {
 
 message HelloResponse {
   string message = 1;
+}
+
+message GetUserInfoRequest {
+  string username = 1;
+}
+
+message GetUserInfoResponse {
+  UserInfo user_info = 1;
+}
+
+message UserInfo {
+  string username = 1;
 }
