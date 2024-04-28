@@ -1,28 +1,30 @@
-package brain
+package brain_test
 
 import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
+	"minmax.uk/autopal/pkg/brain"
+	brain_t "minmax.uk/autopal/pkg/brain/brain_testing"
 )
 
 func Test_CreateGetUser(t *testing.T) {
 	require := require.New(t)
-	b := NewTestBrain(t)
+	b := brain_t.NewTestBrain(t)
 	username := "test_username"
-	want := &User{username}
+	want := &brain.User{username}
 
 	_, err := b.GetUser(username)
-	require.ErrorIs(err, ErrNotFound)
+	require.ErrorIs(err, brain.ErrNotFound)
 
 	got1, err := b.CreateUser(username)
 	require.NoError(err)
 	require.Equal(want, got1)
 
 	got2, err := b.GetUser(username)
-	require.NoError(err, ErrNotFound)
+	require.NoError(err, brain.ErrNotFound)
 	require.Equal(want, got2)
 
 	_, err = b.CreateUser(username)
-	require.ErrorIs(err, ErrAlreadyExists)
+	require.ErrorIs(err, brain.ErrAlreadyExists)
 }
