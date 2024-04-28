@@ -1,24 +1,52 @@
 package admin
 
 import (
+	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
 	"minmax.uk/autopal/pkg/admin/common"
 	"minmax.uk/autopal/pkg/brain"
 )
 
+var (
+	docStyle = lipgloss.NewStyle().Margin(1, 0)
+)
+
+var _ list.DefaultItem = submodelItem{}
+
+type submodelItem struct {
+	title string
+	model tea.Model
+}
+
+func (i submodelItem) Description() string {
+	return i.title
+}
+func (i submodelItem) Title() string {
+	return i.title
+}
+func (i submodelItem) FilterValue() string {
+	return i.title
+}
+
 var _ tea.Model = (*rootModel)(nil)
 
 type rootModel struct {
-	submodels      []tea.Model
-	submodelNames  []string
+	list           list.Model
 	activeSubmodel tea.Model
-	cursor         int
 }
 
 func NewRootModel(b *brain.Brain, username string) *rootModel {
+	items := []list.Item{
+		newCreateUserModel(b, username),
+		newGetUserInfoModel(b, username),
+	}
+	ld := list.NewDefaultDelegate()
+	ld.ShowDescription = false
+	l := list.New(items, ld, 0, 0)
+	l.Title = "What do you want to do?"
 	return &rootModel{
-		submodels:     []tea.Model{NewGetUserInfoModel(b, username), NewCreateUserModel(b, username)},
-		submodelNames: []string{"Get user", "Create user"},
+		list: l,
 	}
 }
 
@@ -41,36 +69,25 @@ func (m *rootModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		switch keypress := msg.String(); keypress {
 		case "q", "ctrl+c":
 			return m, tea.Quit
-		case "up", "k":
-			if m.cursor > 0 {
-				m.cursor--
-			}
-		case "down", "j":
-			if m.cursor+1 < len(m.submodelNames) {
-				m.cursor++
-			}
 		case "enter":
-			m.activeSubmodel = m.submodels[m.cursor]
-			return m, m.activeSubmodel.Init()
+			item, ok := m.list.SelectedItem().(submodelItem)
+			if ok {
+				m.activeSubmodel = item.model
+				return m, m.activeSubmodel.Init()
+			}
 		}
+	case tea.WindowSizeMsg:
+		w, h := docStyle.GetFrameSize()
+		m.list.SetSize(msg.Width-w, msg.Height-h)
 	}
-	return m, nil
+	var cmd tea.Cmd
+	m.list, cmd = m.list.Update(msg)
+	return m, cmd
 }
 
 func (m *rootModel) View() string {
 	if m.activeSubmodel != nil {
 		return m.activeSubmodel.View()
 	}
-	s := "What do you want to do?\n"
-	for i, choice := range m.submodelNames {
-		line := " "
-		if i == m.cursor {
-			line = ">"
-		}
-		line += " " + choice + "\n"
-		s += line
-	}
-	s += "\nPress ender to select.\n"
-	s += "\nPress q to quit.\n"
-	return s
+	return docStyle.Render(m.list.View())
 }
