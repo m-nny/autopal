@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option go_package = "minmax.uk/autopal/proto.life";
+
+package autopal.life;
+
+service LifeService {
+  rpc GetRandomState(GetRandomStateRequest) returns (GetRandomStateResponse) {}
+  rpc GetNextState(GetNextStateRequest) returns (GetNextStateResponse) {}
+}
+
+message GetRandomStateRequest {
+  int64 seed = 1;
+  int64 rows = 2;
+  int64 cols = 3;
+}
+
+message GetRandomStateResponse {
+  GameState state = 1;
+}
+
+message GetNextStateRequest {
+  GameState current_state = 1;
+}
+
+message GetNextStateResponse {
+  GameState new_state = 1;
+}
+
+message GameState {
+  int64 rows = 1;
+  int64 cols = 2;
+  repeated bool cells = 3; // shoule have length of rows * cols
+}

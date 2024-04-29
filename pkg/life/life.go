@@ -3,6 +3,8 @@ package life
 import (
 	"fmt"
 	"strings"
+
+	pb "minmax.uk/autopal/proto/life"
 )
 
 var cell_to_char = map[bool]rune{
@@ -89,7 +91,7 @@ func (s *GameState) Next() *GameState {
 				}
 			}
 			i := s.absPos(col, row)
-			if s.cells[i] && 2 <= neighbours && neighbours < 4 {
+			if s.cells[i] && 2 <= neighbours && neighbours <= 4 {
 				// Any live cell with two or three live neighbors lives on to the next generation.
 				new_s.cells[i] = true
 			}
@@ -118,4 +120,43 @@ func (s *GameState) cntAt(col, row int) int {
 		return 1
 	}
 	return 0
+}
+
+func FromCells(cols int, rows int, cells []bool) (*GameState, error) {
+	gs := &GameState{
+		cols:  cols,
+		rows:  rows,
+		cells: cells,
+	}
+	return gs, gs.Valid()
+}
+
+func FromProto(pgs *pb.GameState) (*GameState, error) {
+	if pgs == nil {
+		return nil, fmt.Errorf("pgs is nil")
+	}
+	gs := &GameState{
+		cols:  int(pgs.GetCols()),
+		rows:  int(pgs.GetRows()),
+		cells: pgs.GetCells(),
+	}
+	return gs, gs.Valid()
+}
+
+func (gs *GameState) Valid() error {
+	if gs.cols <= 0 || gs.rows <= 0 {
+		return fmt.Errorf("both cols and rows shoule be positive: cols %d rows %d", gs.cols, gs.rows)
+	}
+	if len(gs.cells) != gs.cols*gs.rows {
+		return fmt.Errorf("number of cells does not match cols*rows len(%d) != %d*%d", len(gs.cells), gs.cols, gs.rows)
+	}
+	return nil
+}
+
+func (s *GameState) ToProto() *pb.GameState {
+	return &pb.GameState{
+		Cols:  int64(s.cols),
+		Rows:  int64(s.rows),
+		Cells: s.cells,
+	}
 }
