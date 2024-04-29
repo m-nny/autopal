@@ -4,13 +4,13 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"math/rand"
 	"net"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"minmax.uk/autopal/pkg/life"
+	"minmax.uk/autopal/pkg/life/boards"
 	pb "minmax.uk/autopal/proto/life"
 )
 
@@ -28,19 +28,21 @@ func (s *Server) GetRandomState(ctx context.Context, req *pb.GetRandomStateReque
 		return nil, status.Error(codes.InvalidArgument, "both rows and cols should be > 0")
 	}
 
-	// TODO: add options for randomness
-	rand := rand.New(rand.NewSource(req.Seed))
-
-	// We can do it more efficiently by generating whole chunks (int64) and using it
-	cells := make([]bool, rows*cols, rows*cols)
-	for i := range rows * cols {
-		cells[i] = getRandBool(rand)
-	}
-	gs, err := life.FromCells(int(cols), int(rows), cells)
+	gs, err := boards.Rnadom(cols, rows, req.GetSeed())
 	if err != nil {
 		return nil, err
 	}
+
 	return &pb.GetRandomStateResponse{State: gs.ToProto()}, nil
+}
+
+func (s *Server) GetNextState(ctx context.Context, req *pb.GetNextStateRequest) (*pb.GetNextStateResponse, error) {
+	init_gs, err := life.FromProto(req.GetCurrentState())
+	if err != nil {
+		return nil, status.Error(codes.InvalidArgument, err.Error())
+	}
+	new_gs := init_gs.Next()
+	return &pb.GetNextStateResponse{NewState: new_gs.ToProto()}, nil
 }
 
 func (s *Server) Serve(addr string) error {
@@ -55,10 +57,4 @@ func (s *Server) Serve(addr string) error {
 		return fmt.Errorf("failed to serve: %v", err)
 	}
 	return nil
-}
-
-func getRandBool(rand *rand.Rand) bool {
-	max_n := 100
-	return (rand.Intn(max_n) & 1) == 1
-
 }

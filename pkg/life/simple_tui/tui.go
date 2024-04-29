@@ -1,17 +1,18 @@
-package life
+package simple_tui
 
 import (
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
+	"minmax.uk/autopal/pkg/life"
 )
 
 type Model struct {
-	state        *GameState
+	state        *life.GameState
 	tickDuration time.Duration
 }
 
-func NewModel(state *GameState, tickDuration time.Duration) *Model {
+func NewModel(state *life.GameState, tickDuration time.Duration) *Model {
 	return &Model{state, tickDuration}
 }
 
