@@ -7,6 +7,7 @@ package autopal.life;
 service LifeService {
   rpc GetRandomState(GetRandomStateRequest) returns (GetRandomStateResponse) {}
   rpc GetNextState(GetNextStateRequest) returns (GetNextStateResponse) {}
+  rpc PlayRandomGame(PlayRandomGameRequest) returns (stream PlayRandomGameResponse) {}
 }
 
 message GetRandomStateRequest {
@@ -25,6 +26,19 @@ message GetNextStateRequest {
 
 message GetNextStateResponse {
   GameState new_state = 1;
+}
+
+message PlayRandomGameRequest {
+  int64 seed = 1;
+  int64 rows = 2;
+  int64 cols = 3;
+  int64 iterations = 4;
+  bool until_stabilizes = 5;
+}
+
+message PlayRandomGameResponse {
+  int64 iteration = 1;
+  GameState state = 2;
 }
 
 message GameState {

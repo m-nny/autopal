@@ -24,6 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type LifeServiceClient interface {
 	GetRandomState(ctx context.Context, in *GetRandomStateRequest, opts ...grpc.CallOption) (*GetRandomStateResponse, error)
 	GetNextState(ctx context.Context, in *GetNextStateRequest, opts ...grpc.CallOption) (*GetNextStateResponse, error)
+	PlayRandomGame(ctx context.Context, in *PlayRandomGameRequest, opts ...grpc.CallOption) (LifeService_PlayRandomGameClient, error)
 }
 
 type lifeServiceClient struct {
@@ -52,12 +53,45 @@ func (c *lifeServiceClient) GetNextState(ctx context.Context, in *GetNextStateRe
 	return out, nil
 }
 
+func (c *lifeServiceClient) PlayRandomGame(ctx context.Context, in *PlayRandomGameRequest, opts ...grpc.CallOption) (LifeService_PlayRandomGameClient, error) {
+	stream, err := c.cc.NewStream(ctx, &LifeService_ServiceDesc.Streams[0], "/autopal.life.LifeService/PlayRandomGame", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &lifeServicePlayRandomGameClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type LifeService_PlayRandomGameClient interface {
+	Recv() (*PlayRandomGameResponse, error)
+	grpc.ClientStream
+}
+
+type lifeServicePlayRandomGameClient struct {
+	grpc.ClientStream
+}
+
+func (x *lifeServicePlayRandomGameClient) Recv() (*PlayRandomGameResponse, error) {
+	m := new(PlayRandomGameResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // LifeServiceServer is the server API for LifeService service.
 // All implementations must embed UnimplementedLifeServiceServer
 // for forward compatibility
 type LifeServiceServer interface {
 	GetRandomState(context.Context, *GetRandomStateRequest) (*GetRandomStateResponse, error)
 	GetNextState(context.Context, *GetNextStateRequest) (*GetNextStateResponse, error)
+	PlayRandomGame(*PlayRandomGameRequest, LifeService_PlayRandomGameServer) error
 	mustEmbedUnimplementedLifeServiceServer()
 }
 
@@ -70,6 +104,9 @@ func (UnimplementedLifeServiceServer) GetRandomState(context.Context, *GetRandom
 }
 func (UnimplementedLifeServiceServer) GetNextState(context.Context, *GetNextStateRequest) (*GetNextStateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNextState not implemented")
+}
+func (UnimplementedLifeServiceServer) PlayRandomGame(*PlayRandomGameRequest, LifeService_PlayRandomGameServer) error {
+	return status.Errorf(codes.Unimplemented, "method PlayRandomGame not implemented")
 }
 func (UnimplementedLifeServiceServer) mustEmbedUnimplementedLifeServiceServer() {}
 
@@ -120,6 +157,27 @@ func _LifeService_GetNextState_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _LifeService_PlayRandomGame_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(PlayRandomGameRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(LifeServiceServer).PlayRandomGame(m, &lifeServicePlayRandomGameServer{stream})
+}
+
+type LifeService_PlayRandomGameServer interface {
+	Send(*PlayRandomGameResponse) error
+	grpc.ServerStream
+}
+
+type lifeServicePlayRandomGameServer struct {
+	grpc.ServerStream
+}
+
+func (x *lifeServicePlayRandomGameServer) Send(m *PlayRandomGameResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // LifeService_ServiceDesc is the grpc.ServiceDesc for LifeService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -136,6 +194,12 @@ var LifeService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _LifeService_GetNextState_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "PlayRandomGame",
+			Handler:       _LifeService_PlayRandomGame_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "proto/life/life.proto",
 }

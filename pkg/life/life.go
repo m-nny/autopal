@@ -2,6 +2,7 @@ package life
 
 import (
 	"fmt"
+	"slices"
 	"strings"
 
 	pb "minmax.uk/autopal/proto/life"
@@ -159,4 +160,11 @@ func (s *GameState) ToProto() *pb.GameState {
 		Rows:  int64(s.rows),
 		Cells: s.cells,
 	}
+}
+
+func (s *GameState) Equal(other *GameState) bool {
+	if s.cols != other.cols || s.rows != other.rows {
+		return false
+	}
+	return slices.Equal(s.cells, other.cells)
 }

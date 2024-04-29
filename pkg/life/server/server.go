@@ -14,6 +14,8 @@ import (
 	pb "minmax.uk/autopal/proto/life"
 )
 
+const MAX_ITERS = 1000_000
+
 type Server struct {
 	pb.UnimplementedLifeServiceServer
 }
@@ -43,6 +45,42 @@ func (s *Server) GetNextState(ctx context.Context, req *pb.GetNextStateRequest) 
 	}
 	new_gs := init_gs.Next()
 	return &pb.GetNextStateResponse{NewState: new_gs.ToProto()}, nil
+}
+
+func (s *Server) PlayRandomGame(req *pb.PlayRandomGameRequest, stream pb.LifeService_PlayRandomGameServer) error {
+	rows, cols := req.GetRows(), req.GetCols()
+	if rows <= 0 || cols <= 0 {
+		return status.Error(codes.InvalidArgument, "both rows and cols should be > 0")
+	}
+	iters := req.GetIterations()
+	if req.GetUntilStabilizes() {
+		iters = MAX_ITERS
+	} else if iters <= 0 {
+		return status.Error(codes.InvalidArgument, "iters should be positive")
+	}
+
+	gs, err := boards.Rnadom(cols, rows, req.GetSeed())
+	if err != nil {
+		return err
+	}
+
+	stabilized := false
+	for i := range iters {
+		stream.Send(&pb.PlayRandomGameResponse{
+			Iteration: i,
+			State:     gs.ToProto(),
+		})
+		new_gs := gs.Next()
+		if new_gs.Equal(gs) {
+			stabilized = true
+			break
+		}
+		gs = new_gs
+	}
+	if req.GetUntilStabilizes() && !stabilized {
+		return fmt.Errorf("game did not stabilize in %d iterations", MAX_ITERS)
+	}
+	return nil
 }
 
 func (s *Server) Serve(addr string) error {
