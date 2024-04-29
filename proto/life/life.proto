@@ -39,6 +39,7 @@ message PlayRandomGameRequest {
 message PlayRandomGameResponse {
   int64 iteration = 1;
   GameState state = 2;
+  int64 total_iterations = 3;
 }
 
 message GameState {

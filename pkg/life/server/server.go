@@ -14,7 +14,7 @@ import (
 	pb "minmax.uk/autopal/proto/life"
 )
 
-const MAX_ITERS = 1000_000
+const MAX_ITERS = 10_000
 
 type Server struct {
 	pb.UnimplementedLifeServiceServer
@@ -67,8 +67,10 @@ func (s *Server) PlayRandomGame(req *pb.PlayRandomGameRequest, stream pb.LifeSer
 	stabilized := false
 	for i := range iters {
 		stream.Send(&pb.PlayRandomGameResponse{
-			Iteration: i,
+			Iteration: i + 1,
 			State:     gs.ToProto(),
+
+			TotalIterations: iters,
 		})
 		new_gs := gs.Next()
 		if new_gs.Equal(gs) {
