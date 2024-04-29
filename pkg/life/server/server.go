@@ -30,7 +30,7 @@ func (s *Server) GetRandomState(ctx context.Context, req *pb.GetRandomStateReque
 		return nil, status.Error(codes.InvalidArgument, "both rows and cols should be > 0")
 	}
 
-	gs, err := boards.Rnadom(cols, rows, req.GetSeed())
+	gs, err := boards.Random(cols, rows, req.GetSeed())
 	if err != nil {
 		return nil, err
 	}
@@ -59,7 +59,7 @@ func (s *Server) PlayRandomGame(req *pb.PlayRandomGameRequest, stream pb.LifeSer
 		return status.Error(codes.InvalidArgument, "iters should be positive")
 	}
 
-	gs, err := boards.Rnadom(cols, rows, req.GetSeed())
+	gs, err := boards.Random(cols, rows, req.GetSeed())
 	if err != nil {
 		return err
 	}

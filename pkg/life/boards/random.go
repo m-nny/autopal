@@ -7,7 +7,7 @@ import (
 	"minmax.uk/autopal/pkg/life"
 )
 
-func Rnadom(cols, rows, seed int64) (*life.GameState, error) {
+func Random(cols, rows, seed int64) (*life.GameState, error) {
 	if rows <= 0 || cols <= 0 {
 		return nil, fmt.Errorf("both rows and cols should be > 0")
 	}
