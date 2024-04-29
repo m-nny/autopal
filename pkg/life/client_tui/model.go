@@ -14,11 +14,13 @@ import (
 
 type Model struct {
 	stream       pb.LifeService_PlayRandomGameClient
-	totalIters   int64
 	tickDuration time.Duration
+	totalIters   int64
+
+	state   *life.GameState
+	n_board []int
 
 	curIter  int64
-	state    *life.GameState
 	err      error
 	finished bool
 }
@@ -26,11 +28,13 @@ type Model struct {
 func NewModel(stream pb.LifeService_PlayRandomGameClient, tickDuration time.Duration, totalIters int64) *Model {
 	return &Model{
 		stream:       stream,
-		totalIters:   totalIters,
 		tickDuration: tickDuration,
+		totalIters:   totalIters,
+
+		state:   nil,
+		n_board: nil,
 
 		curIter:  0,
-		state:    nil,
 		err:      nil,
 		finished: false,
 	}
@@ -38,7 +42,7 @@ func NewModel(stream pb.LifeService_PlayRandomGameClient, tickDuration time.Dura
 
 var _ tea.Model = (*Model)(nil)
 
-type newStateMsg *pb.PlayRandomGameResponse
+type newStateMsg = *pb.PlayRandomGameResponse
 
 type tickMsg time.Time
 
@@ -89,14 +93,15 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return m, tea.Batch(m.getState(), m.doTick())
 		}
 	case newStateMsg:
-		gs, err := life.FromProto(msg.State)
+		gs, err := life.FromProto(msg.GetState())
 		if err != nil {
 			m.err = err
 		} else {
 			m.state = gs
+			m.n_board = m.state.NBoard()
 		}
-		m.curIter = msg.Iteration
-		m.totalIters = msg.TotalIterations
+		m.curIter = msg.GetIteration()
+		m.totalIters = msg.GetTotalIterations()
 
 		return m, nil
 	case tea.KeyMsg:
@@ -118,7 +123,7 @@ func (m *Model) View() string {
 	if m.err != nil {
 		lines = append(lines, fmt.Sprintf("Got error: %v", m.err.Error()))
 	} else if m.state != nil {
-		lines = append(lines, m.state.String())
+		lines = append(lines, m.state.GetColoredBoard())
 	} else {
 		lines = append(lines, "Waiting...")
 	}

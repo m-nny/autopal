@@ -17,9 +17,10 @@ var FULL_CELLS = "O#"
 var SKIP_CELLS = "\n\t "
 
 type GameState struct {
-	cols  int
-	rows  int
-	cells []bool
+	Cols    int
+	Rows    int
+	cells   []bool
+	n_board []int
 }
 
 func FromString(cols int, rows int, str string) (*GameState, error) {
@@ -60,28 +61,31 @@ func MustFromString(cols, rows int, str string) *GameState {
 
 func EmptyGame(cols int, rows int) *GameState {
 	cells := make([]bool, cols*rows, cols*rows)
-	return &GameState{cols, rows, cells}
+	return &GameState{cols, rows, cells, nil}
 }
 
 func (s *GameState) String() string {
 	var builder strings.Builder
-	for row := range s.rows {
-		for col := range s.cols {
-			i := row*s.cols + col
+	for row := range s.Rows {
+		for col := range s.Cols {
+			i := row*s.Cols + col
 			cell := s.cells[i]
 			builder.WriteRune(cell_to_char[cell])
 		}
-		if row+1 < s.rows {
+		if row+1 < s.Rows {
 			builder.WriteRune('\n')
 		}
 	}
 	return builder.String()
 }
 
-func (s *GameState) Next() *GameState {
-	new_s := EmptyGame(s.cols, s.rows)
-	for row := range s.rows {
-		for col := range s.cols {
+func (s *GameState) NBoard() []int {
+	if s.n_board != nil {
+		return s.n_board
+	}
+	n_board := make([]int, s.Cols*s.Rows, s.Cols*s.Rows)
+	for row := range s.Rows {
+		for col := range s.Cols {
 			neighbours := 0
 			for d_row := -1; d_row <= 1; d_row++ {
 				for d_col := -1; d_col <= 1; d_col++ {
@@ -91,32 +95,42 @@ func (s *GameState) Next() *GameState {
 					neighbours += s.cntAt(col+d_col, row+d_row)
 				}
 			}
-			i := s.absPos(col, row)
-			if s.cells[i] && 2 <= neighbours && neighbours <= 4 {
-				// Any live cell with two or three live neighbors lives on to the next generation.
-				new_s.cells[i] = true
-			}
-			if !s.cells[i] && neighbours == 3 {
-				new_s.cells[i] = true
-			}
+			i := s.AbsPos(col, row)
+			n_board[i] = neighbours
+		}
+	}
+	s.n_board = n_board
+	return n_board
+}
+
+func (s *GameState) Next() *GameState {
+	new_s := EmptyGame(s.Cols, s.Rows)
+	n_board := s.NBoard()
+	for i := range s.Rows * s.Cols {
+		if s.cells[i] && 2 <= n_board[i] && n_board[i] <= 3 {
+			// Any live cell with two or three live neighbors lives on to the next generation.
+			new_s.cells[i] = true
+		}
+		if !s.cells[i] && n_board[i] == 3 {
+			new_s.cells[i] = true
 		}
 	}
 	return new_s
 }
 
 func (s *GameState) normPos(col, row int) (int, int) {
-	col = (col + s.cols) % s.cols
-	row = (row + s.rows) % s.rows
+	col = (col + s.Cols) % s.Cols
+	row = (row + s.Rows) % s.Rows
 	return col, row
 }
 
-func (s *GameState) absPos(col, row int) int {
-	i := row*s.cols + col
+func (s *GameState) AbsPos(col, row int) int {
+	i := row*s.Cols + col
 	return i
 }
 
 func (s *GameState) cntAt(col, row int) int {
-	i := s.absPos(s.normPos(col, row))
+	i := s.AbsPos(s.normPos(col, row))
 	if s.cells[i] {
 		return 1
 	}
@@ -125,8 +139,8 @@ func (s *GameState) cntAt(col, row int) int {
 
 func FromCells(cols int, rows int, cells []bool) (*GameState, error) {
 	gs := &GameState{
-		cols:  cols,
-		rows:  rows,
+		Cols:  cols,
+		Rows:  rows,
 		cells: cells,
 	}
 	return gs, gs.Valid()
@@ -137,33 +151,33 @@ func FromProto(pgs *pb.GameState) (*GameState, error) {
 		return nil, fmt.Errorf("pgs is nil")
 	}
 	gs := &GameState{
-		cols:  int(pgs.GetCols()),
-		rows:  int(pgs.GetRows()),
+		Cols:  int(pgs.GetCols()),
+		Rows:  int(pgs.GetRows()),
 		cells: pgs.GetCells(),
 	}
 	return gs, gs.Valid()
 }
 
 func (gs *GameState) Valid() error {
-	if gs.cols <= 0 || gs.rows <= 0 {
-		return fmt.Errorf("both cols and rows shoule be positive: cols %d rows %d", gs.cols, gs.rows)
+	if gs.Cols <= 0 || gs.Rows <= 0 {
+		return fmt.Errorf("both cols and rows shoule be positive: cols %d rows %d", gs.Cols, gs.Rows)
 	}
-	if len(gs.cells) != gs.cols*gs.rows {
-		return fmt.Errorf("number of cells does not match cols*rows len(%d) != %d*%d", len(gs.cells), gs.cols, gs.rows)
+	if len(gs.cells) != gs.Cols*gs.Rows {
+		return fmt.Errorf("number of cells does not match cols*rows len(%d) != %d*%d", len(gs.cells), gs.Cols, gs.Rows)
 	}
 	return nil
 }
 
 func (s *GameState) ToProto() *pb.GameState {
 	return &pb.GameState{
-		Cols:  int64(s.cols),
-		Rows:  int64(s.rows),
+		Cols:  int64(s.Cols),
+		Rows:  int64(s.Rows),
 		Cells: s.cells,
 	}
 }
 
 func (s *GameState) Equal(other *GameState) bool {
-	if s.cols != other.cols || s.rows != other.rows {
+	if s.Cols != other.Cols || s.Rows != other.Rows {
 		return false
 	}
 	return slices.Equal(s.cells, other.cells)

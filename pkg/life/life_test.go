@@ -14,7 +14,7 @@ func Test_EmptyGame(t *testing.T) {
 	cols := 4
 	gotState := EmptyGame(cols, rows)
 	wantState := &GameState{
-		cols: cols, rows: rows,
+		Cols: cols, Rows: rows,
 		cells: []bool{false, false, false, false, false, false, false, false, false, false, false, false},
 	}
 	require.Equal(wantState, gotState)
@@ -65,7 +65,7 @@ func Test_FromString(t *testing.T) {
 				return
 			}
 			require.NoError(err)
-			wantState := &GameState{cols: test.cols, rows: test.rows, cells: test.wantCells}
+			wantState := &GameState{Cols: test.cols, Rows: test.rows, cells: test.wantCells}
 			require.Equal(wantState, gotState)
 		})
 	}
@@ -363,7 +363,7 @@ func Test_Next_OnOsclillators(t *testing.T) {
 }
 
 func requireState(t testing.TB, wantBoard string, gotState *GameState, msgAndArgs ...any) {
-	wantState, err := FromString(gotState.cols, gotState.rows, wantBoard)
+	wantState, err := FromString(gotState.Cols, gotState.Rows, wantBoard)
 	require.NoError(t, err)
 	if !assert.Equal(t, wantState.cells, gotState.cells) {
 		fmt.Printf("got:\n%s", gotState.String())
